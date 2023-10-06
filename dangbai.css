@@ -1,0 +1,96 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 750px;
+}
+#main{
+    background: linear-gradient(to bottom, #fefcfc 30%, #192442 70%); /* Sử dụng linear-gradient để tạo nền chia đôi */
+    height: 80%;
+}
+.tongquat {
+    text-align: center;
+    margin: auto;
+    max-width: 700px;
+    height: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+.top {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.mid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.phanchinh {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.chothue{
+    margin-right: 50px;
+}
+.chothue,
+.tim {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Đặt chiều rộng và độ cao cho hình ảnh và loại bỏ dấu gạch dưới chân của liên kết */
+.chothue img,
+.tim img {
+    max-width: 100px;
+    height: auto;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Đặt màu văn bản của liên kết là đen và loại bỏ gạch dưới chân */
+.chothue .text,
+.tim .text {
+    font-size: 16px;
+    margin-top: 10px;
+    color: black;
+}
+
+/* Đặt kiểu nút cho mục "Cho Thuê" và "Tìm Trọ" */
+.chothue,
+.tim {
+    background-color: hsl(210, 8%, 71%);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Đổi màu nền khi di chuột qua nút (tuỳ chọn) */
+.chothue:hover,
+.tim:hover {
+    background-color: #566c83;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid #ccc;
+    margin: 20px 0;
+}

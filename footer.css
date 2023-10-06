@@ -1,0 +1,31 @@
+footer {
+    width: 100%;
+    padding: 30px;
+    background-color: #192442;
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    text-align: left;
+    justify-content: space-between;
+  }
+  .footer-first-content {
+    width: 30%;
+    text-align: center;
+  }
+  .footer-col {
+    width: 30%;
+  }
+  .footer-col li {
+    list-style: none;
+    line-height: 2;
+  }
+  .footer-col ul {
+    padding: 0;
+  }
+  .footer-col li:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  /*===== FOOTER : END =====*/
+  
