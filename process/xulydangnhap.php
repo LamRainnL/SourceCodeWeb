@@ -2,12 +2,12 @@
 session_start();
 if (isset($_POST['submit'])) {
 	//Lấy dữ liệu từ Form
-	$name = $_POST["username"];
+	$sdt = $_POST["sdt"];
 	$pass = $_POST["password"];
 	//Kết nối
-	$kn = mysqli_connect("localhost", "root", "", "datadangky") or die("Không kết nối được");
+	$kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
 	//Xây dựng câu lệnh truy vấn
-	$caulenh = "select * from thongtin where username='" . $name . "'";
+	$caulenh = "select * from users where Sdt='" . $sdt . "'";
 	$result = mysqli_query($kn, $caulenh);
 	$row = mysqli_fetch_array($result);
 	//Kiểm tra tên tài khoản có tồn tại trong cơ sở dữ liệu không
@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
 					window.history.back();
 				  </script>";
 	} else {
-		$mkcsdl = $row['password'];
+		$mkcsdl = $row['MatKhau'];
 		// Kiểm tra xem mật khẩu hiện tại có đúng hay không
 		if ($pass != $mkcsdl) {
 			// Mật khẩu hiện tại không đúng
@@ -26,14 +26,13 @@ if (isset($_POST['submit'])) {
 					window.history.back();
 				  </script>";
 		} else {
-			$ten = $row['ten'];
+			$ten = $row['TenDangNhap'];
 			$_SESSION['ten'] = $ten;
-			header('location:trangchu.php');
-			/*echo"<script> 
+			// header("location:/trangchu.php");
+			echo"<script> 
 							alert('Đăng nhập thành công'); 
-							window.location.href = 'trangchu.php';
-						  </script>";*/
-
+							window.location.href = '/trangchu.php';
+						  </script>";
 		}
 	}
 	mysqli_close($kn);

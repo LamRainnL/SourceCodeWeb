@@ -60,11 +60,8 @@ body {
     /* Thêm gạch chân khi di chuột qua */
 }
 
-.form-group1 {
-    display: flex;
-    justify-content: space-between;
-    /* Đặt khoảng cách giữa các phần tử con là ở giữa */
-    align-items: center;
+.form-group1 .change{
+    float: right;
 }
 
 .form-group2 {

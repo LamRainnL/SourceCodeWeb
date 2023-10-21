@@ -1,7 +1,8 @@
-#header{
+#header {
   width: 100%;
   height: 150px;
 }
+
 /*======== HEADER TOP : START ========*/
 .header-top {
   width: 100%;
@@ -11,16 +12,19 @@
   align-items: center;
   justify-content: space-between;
 }
+
 /* CSS để tạo hiệu ứng chuyển động liên tục cho hotline và email */
 @keyframes moveRight {
   0% {
-      transform: translateX(0);
+    transform: translateX(0);
   }
+
   50% {
-      transform: translateX(10px);
+    transform: translateX(10px);
   }
+
   100% {
-      transform: translateX(0);
+    transform: translateX(0);
   }
 }
 
@@ -28,23 +32,10 @@
   display: flex;
   align-items: center;
   margin: 10px 0;
-  animation: moveRight 2s infinite; /* Sử dụng animation với keyframes để tạo hiệu ứng chuyển động */
+  animation: moveRight 2s infinite;
+  /* Sử dụng animation với keyframes để tạo hiệu ứng chuyển động */
 }
 
-.account{
-  color: white;
-  margin-right: 20px;
-}
-.account a {
-  color: #ecb207;
-  margin-left: 20px;
-  font-size: 16px;
-  text-decoration: none;
-}
-
-.account a:hover {
-  text-decoration: none;
-}
 
 .information div {
   display: inline-block;
@@ -108,7 +99,7 @@ input[type="text"] {
   width: 400px;
 }
 
-input[type="text"],
+.search input[type="text"],
 button[type="submit"] {
   display: inline-block;
   height: 35px;
@@ -173,12 +164,56 @@ button[type="submit"]:hover {
   text-decoration: none;
   font-size: 14px;
 }
-#dangbai{
+
+#dangbai {
   background-color: #ecb207;
   border-radius: 10px;
 }
-#dangbai :hover{
-  background-color:cadetblue;
+
+#dangbai :hover {
+  background-color: cadetblue;
   border-radius: 10px;
 }
+
 /*======== HEADER BOTTOM : END ========*/
+/* Tài khoản */
+.account {
+  color: white;
+  margin-right: 40px;
+  position: relative;
+  /* Đặt phần tử account thành tương đối */
+  width: 100px;
+  cursor: pointer; 
+
+}
+
+.account a {
+  color: black;
+  margin-left: 20px;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.account a:hover {
+  text-decoration: none;
+}
+
+.account-content-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: -210%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 13;
+  width: 200px;
+  /* Thay đổi theo kích thước bạn muốn */
+  height: auto;
+  /* Để nội dung có thể mở rộng theo chiều dọc */
+}
+
+.account-content-container.open {
+  display: block;
+}

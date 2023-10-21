@@ -7,6 +7,6 @@ session_unset();
 session_destroy();
 
 // Chuyển hướng về trang chủ
-header('Location: trangchu.php');
+header('Location:trangchu.php');
 exit;
 ?>

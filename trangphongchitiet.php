@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="trangphongchitiet.css">
+    <link rel="stylesheet" href="/css/trangphongchitiet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width = device-width, initial-scale = 1.0">
     <title>Chi tiết phòng</title>
@@ -11,7 +11,7 @@
 
 <body>
     <?php
-    require 'header.php';
+    require 'layout/header.php';
     ?>
     <main>
         <hr width="85%" />
@@ -80,7 +80,7 @@
                     </script>
 
                     <!----------------->
-                    <div class="main-infor" style="padding-top: 20px; padding-bottom: 20px;">
+                    <div class="main-infor">
                         <div class="pull-left">
                             <div class="address">
                                 <span class="infor-label">Địa chỉ </span>
@@ -105,12 +105,12 @@
                         </div>
 
                         <div class="pull-right" style="text-align: center;">
-                            <h4 style="padding-top:13px">Thông tin liên hệ
+                            <h4>Thông tin liên hệ
                                 <hr width="85%">
                             </h4>
 
                             <div class="agent-contact">
-                                <i class="fa fa-phone" aria-hidden="true" style="padding-top: 10px; padding-bottom:10px">0345440835</i>
+                                <i class="fa fa-phone" aria-hidden="true" style="margin-right: 10px;"></i>(+84)34 5440 835
                                 <p style="color: brown;">2.000.000 Đ/Tháng</p>
                             </div>
                         </div>
@@ -168,13 +168,13 @@
                     </h3>
                     <div style="margin-left: 9px;margin-right: 9px;">
 
-                        <p><i class="fa fa-phone" aria-hidden="true"></i>SDT: 0254987639</p>
-                        <p><i class="fa fa-envelope" aria-hidden="true"></i>Email: Quynhonhome@gmail.com</p>
-                        <p><i class="fa fa-facebook" aria-hidden="true"></i>Facebook: Quynhonhome.facebook.com</p>
+                        <p><i class="fa fa-phone" aria-hidden="true" style="margin-right: 5px;"></i>SDT: 0254987639</p>
+                        <p><i class="fa fa-envelope" aria-hidden="true" style="margin-right: 5px;"></i>Email: qnhome@gmail.com</p>
+                        <p><img class = "icon-facebook" src = "images/icon-facebook.png"/>Facebook: QuyNhonHome.facebook.com</p>
                     </div>
                 </div>
                 <div class="sidebar-img">
-                    <img src="https://xaynhatro.net/wp-content/uploads/2018/06/f70f05c965f280acd9e3.jpg" />
+                    <img src="http://media.phongtot.vn/xc5tx4cj/ads-4-min.png" />
                 </div>
                 <div class="sidebar-img">
                     <img src="http://media.phongtot.vn/xc5tx4cj/ads-3-min.png" />
@@ -183,7 +183,7 @@
         </div>
     </main>
     <?php
-    require 'footer.php'
+    require 'layout/footer.php'
     ?>
 </body>
 

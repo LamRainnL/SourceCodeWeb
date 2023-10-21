@@ -9,16 +9,15 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="/js/loginscript.js"></script>
-    <title>Đăng nhập</title>
+    <title>Đổi mật khẩu</title>
 </head>
 
 <body>
     <div id="wrapper">
-        <form action="process/xulydangnhap.php" id="form-login" method="post">
+        <form action="/process/xulydoimatkhau.php" id="form-login" method="post" onsubmit="return validateForm();">
             <a href="trangchu.php" id="homeicon"><i class="fa fa-home" aria-hidden="true"></i> </a>
-            <h1 class="form-heading">Đăng Nhập</h1>
+            <h1 class="form-heading">Đổi mật khẩu</h1>
             <div class="form-group">
-                <i class="far fa-user"></i>
                 <input type="text" class="form-input" name="sdt" placeholder="Số điện thoại" onblur="validatePhoneNumber(this.value)" required>
                 <!-- Kiểm tra sdt  -->
                 <span id="phoneError" style="color: red;"></span>
@@ -42,7 +41,7 @@
                     function validatePhoneNumber(phoneNumber) {
                         var phonePattern = /^(?:0|\+84)[1-9]\d{8}$/;
                         var phoneError = document.getElementById('phoneError');
-                        var changeButton = document.getElementById('login-button');
+                        var changeButton = document.getElementById('change-button');
 
                         if (phonePattern.test(phoneNumber)) {
                             phoneError.textContent = '';
@@ -65,24 +64,54 @@
 
             </div>
             <div class="form-group">
-                <i class="fas fa-key"></i>
-                <input type="password" class="form-input" name="password" placeholder="Mật khẩu" required>
-                <div id="eye">
+                <input type="password" id="oldpassword" class="form-input" name="oldpassword" placeholder="Mật khẩu cũ" required>
+                <div class="eye" onclick="togglePasswordVisibility('oldpassword')">
                     <i class="far fa-eye"></i>
                 </div>
             </div>
-            <div class="form-group1">
-
-                <a href="Change.php" class="change"><label>Đổi mật khẩu</label></a>
+            <div class="form-group">
+                <input type="password" id="newpassword" class="form-input" name="newpassword" placeholder="Mật khẩu mới" required>
+                <div class="eye" onclick="togglePasswordVisibility('newpassword')">
+                    <i class="far fa-eye"></i>
+                </div>
             </div>
-            <input type="submit" name="submit" value="Đăng nhập" id="login-button" class="form-submit">
-
-
-            <div class="form-group2">
-                <span>
-                    Bạn chưa có tài khoản? <a href="Signup.php">Đăng ký</a>
-                </span>
+            <div class="form-group">
+                <input type="password" id="confirm-password" class="form-input" name="confirm-password" placeholder="Nhập lại mật khẩu mới" required>
+                <div class="eye" onclick="togglePasswordVisibility('confirm-password')">
+                    <i class="far fa-eye"></i>
+                </div>
             </div>
+            <span id="password-error" style="color: red;"></span>
+            <script>
+                function togglePasswordVisibility(inputId) {
+                    var passwordInput = document.getElementById(inputId);
+                    var toggleIcon = passwordInput.nextElementSibling;
+
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        toggleIcon.innerHTML = '<i class="far fa-eye-slash"></i>';
+                    } else {
+                        passwordInput.type = 'password';
+                        toggleIcon.innerHTML = '<i class="far fa-eye"></i>';
+                    }
+                }
+
+                var passwordInput = document.getElementById('newpassword');
+                var confirmPasswordInput = document.getElementById('confirm-password');
+                var passwordError = document.getElementById('password-error');
+
+                confirmPasswordInput.addEventListener('input', function() {
+                    var password = passwordInput.value;
+                    var confirmPassword = confirmPasswordInput.value;
+
+                    if (password !== confirmPassword) {
+                        passwordError.textContent = 'Mật khẩu không khớp';
+                    } else {
+                        passwordError.textContent = '';
+                    }
+                });
+            </script>
+            <input type="submit" name="submit" value="Đổi mât khẩu" id="change-button" class="form-submit">
         </form>
     </div>
 

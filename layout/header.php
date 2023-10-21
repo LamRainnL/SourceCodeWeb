@@ -5,9 +5,11 @@ session_start();
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <script src="/js/header.js"></script>
+
 </head>
 <!-- HEADER TOP : START -->
 <div id="header">
@@ -26,7 +28,16 @@ session_start();
         //kiểm tra xem biến session đã tồn tại hay chưa
         if (isset($_SESSION["ten"])) {
             //Nếu tồn tại thì thay đổi nội dung của chỗ đăng nhập
-            echo '<div class="account" id="account" > Hii,  ' . $_SESSION["ten"] . ' !<a href="logout.php" id="logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a></div>';
+            echo '<div class="account" id="account" >
+                    Hii,  ' . $_SESSION["ten"] . ' !
+                    <div class="account-content-container">
+                        <div class="account-content">
+                            <a href="">Hồ sơ của bạn</a> </br>
+                            <hr>
+                            <a href="logout.php" id="logout">Đăng xuất  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                 </div>';
         } else {
             echo '
         <div class="user-control">
@@ -44,6 +55,16 @@ session_start();
         }
         ?>
     </div>
+    <script>
+        document.getElementById('account').addEventListener('click', function() {
+            var accountContentContainer = this.querySelector('.account-content-container');
+            if (accountContentContainer.classList.contains('open')) {
+                accountContentContainer.classList.remove('open');
+            } else {
+                accountContentContainer.classList.add('open');
+            }
+        });
+    </script>
 
     <!-- HEADER TOP : END -->
     <!-- HEADER BOTTOM : START-->
@@ -52,7 +73,7 @@ session_start();
             <a href="trangchu.php"><img src="/images/homelogo.png" alt="logo" /></a>
         </div>
         <div class="search">
-            <form class="search" action="xulysearch.php" method="GET">
+            <form class="search" action="" method="GET">
                 <input type="text" name="search" id="search" placeholder="">
                 <button type="submit" name="submit"><i class="fa fa-search"></i></button>
             </form>
