@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="/js/loginscript.js"></script>
-    <title>Đăng ký</title>
+    <title>Profile</title>
 </head>
 
 <body>
     <div id="wrapper">
-        <form action="process/xulydangky.php" id="form-login" method="POST" onsubmit="return validateForm();">
+        <form action="process/xulyprofile.php" id="form-login" method="POST" onsubmit="return validateForm();">
             <a href="trangchu.php" id="homeicon"><i class="fa fa-home" aria-hidden="true"></i></a>
-            <h1 class="form-heading">Đăng Ký</h1>
+            <h1 class="form-heading">Hồ sơ cá nhân</h1>
             <div class="form-group" style="display: flex; justify-content: space-between;">
                 <div>
                     <input type="text" class="form-input" name="ho" placeholder="Họ" required>
@@ -48,7 +48,7 @@
                     // Mẫu định dạng số điện thoại cho Việt Nam (10 chữ số, bắt đầu bằng "0" hoặc "+84")
                     var phonePattern = /^(?:0|\+84)[1-9]\d{8}$/;
                     var phoneError = document.getElementById('phoneError');
-                    var loginButton = document.getElementById('signup-button');
+                    var loginButton = document.getElementById('update-button');
 
                     if (phonePattern.test(phoneNumber)) {
                         phoneError.textContent = '';
@@ -96,54 +96,9 @@
                 }
             </script>
 
-            <div class="form-group">
-                <input type="password" id="password" class="form-input" name="password" placeholder="Mật khẩu" required>
-                <div class="eye" onclick="togglePasswordVisibility('password')">
-                    <i class="far fa-eye"></i>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="password" id="confirm-password" class="form-input" name="confirm-password" placeholder="Nhập lại mật khẩu" required>
-                <div class="eye" onclick="togglePasswordVisibility('confirm-password')">
-                    <i class="far fa-eye"></i>
-                </div>
-            </div>
-            <span id="password-error" style="color: red;"></span>
-            <script>
-                function togglePasswordVisibility(inputId) {
-                    var passwordInput = document.getElementById(inputId);
-                    var toggleIcon = passwordInput.nextElementSibling;
-
-                    if (passwordInput.type === 'password') {
-                        passwordInput.type = 'text';
-                        toggleIcon.innerHTML = '<i class="far fa-eye-slash"></i>';
-                    } else {
-                        passwordInput.type = 'password';
-                        toggleIcon.innerHTML = '<i class="far fa-eye"></i>';
-                    }
-                }
-
-                var passwordInput = document.getElementById('password');
-                var confirmPasswordInput = document.getElementById('confirm-password');
-                var passwordError = document.getElementById('password-error');
-
-                confirmPasswordInput.addEventListener('input', function() {
-                    var password = passwordInput.value;
-                    var confirmPassword = confirmPasswordInput.value;
-
-                    if (password !== confirmPassword) {
-                        passwordError.textContent = 'Mật khẩu không khớp';
-                    } else {
-                        passwordError.textContent = '';
-                    }
-                });
-            </script>
-            <input type="submit" name="submit" value="Đăng ký" id="signup-button" class="form-submit">
-            <div class="form-group2">
-                <span>
-                    Bạn đã có tài khoản? <a href="Login.php">Đăng nhập</a>
-                </span>
-            </div>
+            
+            <input type="submit" name="submit" value="Update" id="update-button" class="form-submit">
+            
         </form>
     </div>
 

@@ -33,7 +33,7 @@ if(isset($_POST['submit'])){
 				if(mysqli_query($kn,$updatepass)){
 				echo"<script> 
 						alert('Mật khẩu đã được cập nhật.'); 
-						window.location.href = 'Login.php';
+						window.location.href = '/Login.php';
 					</script>";
 				}
 			}

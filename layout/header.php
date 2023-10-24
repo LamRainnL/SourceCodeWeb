@@ -32,7 +32,7 @@ session_start();
                     Hii,  ' . $_SESSION["ten"] . ' !
                     <div class="account-content-container">
                         <div class="account-content">
-                            <a href="">Hồ sơ của bạn</a> </br>
+                            <a href="profile.php">Hồ sơ của bạn</a> </br>
                             <hr>
                             <a href="logout.php" id="logout">Đăng xuất  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
                         </div>
