@@ -253,7 +253,7 @@
         </div>
     </section>
     <?php
-        require 'layout/footer.php';
+    require 'layout/footer.php';
     ?>
 </body>
 

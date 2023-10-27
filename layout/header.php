@@ -24,20 +24,26 @@ session_start();
                 <a href="mailto:qnhome@gmail.com"> Email: qnhome@gmail.com</a>
             </div>
         </div>
+
         <?php
         //kiểm tra xem biến session đã tồn tại hay chưa
         if (isset($_SESSION["ten"])) {
             //Nếu tồn tại thì thay đổi nội dung của chỗ đăng nhập
-            echo '<div class="account" id="account" >
-                    Hii,  ' . $_SESSION["ten"] . ' !
-                    <div class="account-content-container">
-                        <div class="account-content">
-                            <a href="profile.php">Hồ sơ của bạn</a> </br>
-                            <hr>
-                            <a href="logout.php" id="logout">Đăng xuất  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            echo '
+            <div class="top-right-container">
+                <div id="dangbai"><a href="dangbai.php">Đăng Bài</a></div>
+                <div class="account" id="account" >
+                        Hii,  ' . $_SESSION["ten"] . ' !
+                        <div class="account-content-container">
+                            <div class="account-content">
+                                <a href="profile.php">Hồ sơ của bạn</a> </br>
+                                <hr>
+                                <a href="logout.php" id="logout">Đăng xuất  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                            </div>
                         </div>
                     </div>
-                 </div>';
+            </div>
+            ';
         } else {
             echo '
         <div class="user-control">
@@ -98,13 +104,7 @@ session_start();
             <div class="child"><a href="#can_ho">CĂN HỘ</a></div>
             <div class="child"><a href="#nha_nguyen_can">SLEEP BOX</a></div>
             <div class="child"><a href="#nha_nguyen_can">NHÀ NGUYÊN CĂN</a></div>
-            <?php
-            if (isset($_SESSION["ten"])) {
-                echo '
-            <div class="child" id="dangbai"><a href="dangbai.php">Đăng Bài</a></div>
-            ';
-            }
-            ?>
+
         </div>
     </div>
 </div>
