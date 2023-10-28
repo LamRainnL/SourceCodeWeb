@@ -9,7 +9,6 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <script src="/js/header.js"></script>
-
 </head>
 <!-- HEADER TOP : START -->
 <div id="header">
@@ -27,17 +26,25 @@ session_start();
         <?php
         //kiểm tra xem biến session đã tồn tại hay chưa
         if (isset($_SESSION["ten"])) {
-            //Nếu tồn tại thì thay đổi nội dung của chỗ đăng nhập
-            echo '<div class="account" id="account" >
-                    Hii,  ' . $_SESSION["ten"] . ' !
+            $conn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không thể kết nối");
+            $sql = "select * from users";
+            mysqli_query($conn, "SET NAMES 'utf8'");
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result)) {
+                $row = mysqli_fetch_array($result);
+                    //Nếu tồn tại thì thay đổi nội dung của chỗ đăng nhập
+                    echo '<div class="account" id="account" >
+                    Hii,  ' . $_SESSION['ten'] . ' !
                     <div class="account-content-container">
                         <div class="account-content">
-                            <a href="profile.php">Hồ sơ của bạn</a> </br>
+                            <a href="profile.php?id='.$_SESSION['id'].'">Hồ sơ của bạn</a> </br>
                             <hr>
                             <a href="logout.php" id="logout">Đăng xuất  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
                         </div>
                     </div>
                  </div>';
+                
+            }
         } else {
             echo '
         <div class="user-control">

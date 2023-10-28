@@ -192,7 +192,30 @@
                 <div class="title-content">
                     <h1>BÀI VIẾT MỚI</h1>
                 </div>
-                <ul class="list-item">
+                <?php
+                $conn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không thể kết nối");
+                $sql = "select * from timtro where status='approved'";
+                mysqli_query($conn, "SET NAMES 'utf8'");
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result)) {
+                    echo "<ul class='danhsachbaiviet'>";
+                    while ($row = mysqli_fetch_array($result)) {
+                        $id = $row['Id_TimTro'];
+                        $ten = $row['TenBaiViet'];
+                        $noidung = $row['NoiDung'];
+                        echo "<li class='baiviet'>
+                            <a href='trangphongchitiet.php?id=$id'>
+                            <h3>$ten</h3>
+                            <h3>$noidung</h3>
+                            </a>
+                          </li>";
+                    }
+                    echo "</ul>";
+                } else {
+                    echo "Không có sản phẩm nào!";
+                }
+                ?>
+                <!-- <ul class="list-item">
                     <a href="trangphongchitiet.php">
                         <li>
                             <div class="card">
@@ -218,7 +241,7 @@
                             </div>
                         </li>
                     </a>
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>
@@ -253,7 +276,7 @@
         </div>
     </section>
     <?php
-        require 'layout/footer.php';
+    require 'layout/footer.php';
     ?>
 </body>
 

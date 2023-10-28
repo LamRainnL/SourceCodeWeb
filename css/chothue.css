@@ -75,3 +75,25 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #235a9d;
 }
+.image-preview {
+   
+    border: 1px solid #ccc; /* Thêm đường viền cho phần xem trước */
+    padding: 10px;
+}
+
+#image-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px; /* Khoảng cách giữa các hình ảnh */
+}
+
+#image-list li {
+    width: 150px; /* Độ rộng của mỗi hình ảnh */
+}
+
+.preview-image {
+    max-width: 100%; /* Đảm bảo hình ảnh không bị vượt quá phần tử cha */
+    max-height: 100%; /* Đảm bảo hình ảnh không bị vượt quá phần tử cha */
+}

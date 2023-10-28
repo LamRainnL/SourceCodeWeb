@@ -1,18 +1,22 @@
 <?php 
   if(isset($_POST['submit']))
   {
-  //LẤY DỮ LIỆU TỪ FORM
-  $ho=$_POST["ho"];
-  $ten=$_POST["ten"];
-  $sdt=$_POST["sdt"];
-  $matkhau=$_POST["password"];
-  $email=$_POST["email"];
+  // Lấy dữ liệu từ biểu mẫu
+  $tieude = $_POST['tieude'];
+  $loaihinhchothue = $_POST['loaihinhchothue'];
+  $phuong = $_POST['phuong'];
+  $diachicuthe = $_POST['diachicuthe'];
+  $dientich = $_POST['dientich'];
+  $sophong = $_POST['sophong'];
+  $gia = $_POST['gia'];
+  $mota = $_POST['mota'];
+  $trangthai="pending";
   //1.KẾT NỐI
   $kn=mysqli_connect("localhost","root","","webtimtro") or die("Không kết nối được");
   //2.CHỌN CSDL
   //3.QUY ĐỊNH BẢNG MÃ KẾT NỐI CỦA MÌNH
   //4.XÂY DỰNG CÂU LỆNH TRUY VẤN
-  $caulenh="insert into users (Ho,Ten,Email,Sdt,MatKhau) value ('".$ho."','".$ten."','".$email."','".$sdt."','".$matkhau."')";
+  $caulenh="insert into phongtro (TieuDe,LoaiHinhChoThue,HinhAnh,DiaChiCuThe,Phuong,Gia,DienTich,SoPhong,Mota,status) value ('".$tieude."','".$loaihinhchothue."','".$email."','".$sdt."','".$matkhau."')";
   $caulenhcheck="select * from users where Sdt='".$sdt."'";
   $result=mysqli_query($kn,$caulenhcheck);
   $row=mysqli_fetch_array($result);

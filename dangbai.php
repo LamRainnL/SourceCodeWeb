@@ -26,7 +26,7 @@
                                 <div class="text">Cho thuê phòng</div>
                             </div>
                         </a>
-                        <a href="timphong">
+                        <a href="timtro.php">
                             <div class="tim">
                                 <div class="media"><img src="/images/rent.png" alt="tim"></div>
                                 <div class="text">Tìm phòng</div>

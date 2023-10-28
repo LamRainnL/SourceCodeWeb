@@ -8,97 +8,61 @@
     <link rel="stylesheet" href="/css/logincss.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="/js/loginscript.js"></script>
+    <script src="/js/profile.js"></script>
     <title>Profile</title>
 </head>
 
 <body>
     <div id="wrapper">
-        <form action="process/xulyprofile.php" id="form-login" method="POST" onsubmit="return validateForm();">
+        <form action="process/xulyproflie.php" id="form-login" method="POST" onsubmit="return validateForm();">
             <a href="trangchu.php" id="homeicon"><i class="fa fa-home" aria-hidden="true"></i></a>
             <h1 class="form-heading">Hồ sơ cá nhân</h1>
-            <div class="form-group" style="display: flex; justify-content: space-between;">
-                <div>
-                    <input type="text" class="form-input" name="ho" placeholder="Họ" required>
+            <?php
+            $conn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không thể kết nối");
+
+            // Lấy ID từ đường dẫn URL
+            $id = $_GET['id'];
+            // Truy vấn CSDL để lấy thông tin người dùng
+            $sql = "SELECT * FROM users WHERE Id_User = $id";
+            mysqli_query($conn, "SET NAMES 'utf8'");
+            $result = mysqli_query($conn, $sql);
+            // Kiểm tra lỗi trong truy vấn SQL
+            if ($result === false) {
+                die("Lỗi truy vấn: " . mysqli_error($conn));
+            }
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_array($result);
+                $ho = $row['Ho'];
+                $ten = $row['Ten'];
+                $email = $row['Email'];
+                $sdt = $row['Sdt'];
+            ?>
+                <div class="form-group" style="display: flex; justify-content: space-between;">
+                    <div>
+                        <input type="text" class="form-input" name="ho" placeholder="Họ" value="<?= htmlentities($ho) ?>" required>
+                    </div>
+                    <div>
+                        <input type="text" class="form-input" name="ten" placeholder="Tên" value="<?= htmlentities($ten) ?>" required>
+                    </div>
                 </div>
-                <div>
-                    <input type="text" class="form-input" name="ten" placeholder="Tên" required>
+                <div class="form-group">
+                    <input type="text" class="form-input" id="phone" name="sdt" placeholder="Số điện thoại" onblur="validatePhoneNumber(this.value)" value="<?= htmlentities($sdt) ?>" required>
+                    <span id="phoneError" style="color: red;"></span>
                 </div>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-input" id="phone" name="sdt" placeholder="Số điện thoại" onblur="validatePhoneNumber(this.value)" required>
-                <span id="phoneError" style="color: red;"></span>
-            </div>
-            <!-- Kiểm tra sdt khi người dùng nhập -->
-            <script>
-                function validatePhoneNumber(phoneNumber) {
-                    // Mẫu định dạng số điện thoại cho Việt Nam (10 chữ số, bắt đầu bằng "0" hoặc "+84")
-                    var phonePattern = /^(?:0|\+84)[1-9]\d{8}$/;
+                <div class="form-group">
+                    <input type="text" class="form-input" id="email" name="email" placeholder="Email" value="<?= htmlentities($email) ?>" required>
+                    <span id="emailError" style="color: red;"></span>
+                </div>
+            <?php
+            } else {
+                echo 'Không tìm thấy dữ liệu!';
+            }
 
-                    if (phonePattern.test(phoneNumber)) {
-                        document.getElementById('phoneError').textContent = '';
-                    } else {
-                        document.getElementById('phoneError').textContent = 'Số điện thoại không hợp lệ';
-                    }
-                }
-            </script>
-            <!-- Kiểm tra, ngăn chặn việc nhập sai số điện thoại khi người dùng đăng nhập-->
-            <script>
-                function validatePhoneNumber(phoneNumber) {
-                    // Mẫu định dạng số điện thoại cho Việt Nam (10 chữ số, bắt đầu bằng "0" hoặc "+84")
-                    var phonePattern = /^(?:0|\+84)[1-9]\d{8}$/;
-                    var phoneError = document.getElementById('phoneError');
-                    var loginButton = document.getElementById('update-button');
+            mysqli_close($conn);
+            ?>
 
-                    if (phonePattern.test(phoneNumber)) {
-                        phoneError.textContent = '';
-                        loginButton.disabled = false; // Cho phép đăng nhập
-                    } else {
-                        phoneError.textContent = 'Số điện thoại không hợp lệ';
-                        loginButton.disabled = true; // Ngăn đăng nhập
-                    }
-                }
-            </script>
-            <div class="form-group">
-                <input type="text" class="form-input" id="email" name="email" placeholder="Email" required>
-                <span id="emailError" style="color: red;"></span>
-            </div>
-            <!-- Kiểm tra email khi người dùng nhập -->
-            <script>
-                var emailInput = document.getElementById('email');
-                var emailError = document.getElementById('emailError');
-
-                emailInput.addEventListener('input', function() {
-                    var email = emailInput.value;
-                    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-                    if (emailPattern.test(email)) {
-                        emailError.textContent = '';
-                    } else {
-                        emailError.textContent = 'Email không hợp lệ';
-                    }
-                });
-            </script>
-            <!-- Kiểm tra định dạng email khi người dùng nhấn đăng ký -->
-            <script>
-                function validateForm() {
-                    var email = emailInput.value;
-                    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-                    if (!emailPattern.test(email)) {
-                        emailError.textContent = 'Email không hợp lệ';
-                        return false; // Ngăn chặn gửi form nếu email không hợp lệ
-                    }
-
-                    // Kiểm tra các điều kiện khác ở đây nếu cần
-
-                    return true; // Cho phép gửi form nếu tất cả điều kiện đều đúng
-                }
-            </script>
-
-            
             <input type="submit" name="submit" value="Update" id="update-button" class="form-submit">
-            
+
         </form>
     </div>
 

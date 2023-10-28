@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2023 at 06:55 AM
+-- Generation Time: Oct 28, 2023 at 06:21 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `Id` int(11) NOT NULL,
-  `TenDangNhap` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `MatKhau` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `TenDangNhap` text DEFAULT NULL,
+  `MatKhau` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Dumping data for table `admins`
@@ -39,9 +39,7 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`Id`, `TenDangNhap`, `MatKhau`) VALUES
 (1, 'duy', '123'),
-(2, 'lam', '123'),
-(3, 'huong', '123'),
-(4, 'ha', '123');
+(2, 'lam', '123');
 
 -- --------------------------------------------------------
 
@@ -50,22 +48,21 @@ INSERT INTO `admins` (`Id`, `TenDangNhap`, `MatKhau`) VALUES
 --
 
 CREATE TABLE `danhmuc` (
-  `Id` int(11) NOT NULL,
-  `TenDanhMuc` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `MoTa` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `TrangThai` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `Id_DanhMuc` int(11) NOT NULL,
+  `TenDanhMuc` text DEFAULT NULL,
+  `MoTa` text DEFAULT NULL,
+  `TrangThai` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `NgayTao` datetime DEFAULT NULL,
   `NgayCapNhat` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Dumping data for table `danhmuc`
 --
 
-INSERT INTO `danhmuc` (`Id`, `TenDanhMuc`, `MoTa`, `TrangThai`, `NgayTao`, `NgayCapNhat`) VALUES
-(1, 'DanhMuc1', 'Nhà trọ', 'Hoạt động', '2023-10-11 22:14:19', '2023-10-11 22:14:19'),
-(2, 'DanhMuc2', 'SleepBox', 'Tạm ngừng', '2023-10-11 22:14:19', '2023-10-11 22:14:19'),
-(3, 'DanhMuc3', 'Căn hộ', 'Hoạt động', '2023-10-11 22:14:19', '2023-10-11 22:14:19');
+INSERT INTO `danhmuc` (`Id_DanhMuc`, `TenDanhMuc`, `MoTa`, `TrangThai`, `NgayTao`, `NgayCapNhat`) VALUES
+(1, 'DanhMuc1', 'Nhà Trọ', 'Hoạt động', '2023-10-25 22:57:34', '2023-10-25 22:57:34'),
+(2, 'DanhMuc2', 'Sleepbox', 'Ngừng hoạt động', '2023-10-25 22:57:34', '2023-10-25 22:57:34');
 
 -- --------------------------------------------------------
 
@@ -74,36 +71,28 @@ INSERT INTO `danhmuc` (`Id`, `TenDanhMuc`, `MoTa`, `TrangThai`, `NgayTao`, `Ngay
 --
 
 CREATE TABLE `phongtro` (
-  `Id` int(11) NOT NULL,
-  `TieuDe` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `TenPhong` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `HinhAnh` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `MoTa` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `SoNha` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `Phuong` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `SoTang` int(11) DEFAULT NULL,
-  `PhongNgu` int(11) DEFAULT NULL,
-  `VeSinh` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `Gia` int(11) DEFAULT NULL,
+  `Id_PhongTro` int(11) NOT NULL,
+  `TieuDe` text DEFAULT NULL,
+  `LoaiHinhChoThue` text DEFAULT NULL,
+  `HinhAnh` text DEFAULT NULL,
+  `DiaChiCuThe` text DEFAULT NULL,
+  `Phuong` text DEFAULT NULL,
+  `Gia` decimal(10,2) DEFAULT NULL,
   `DienTich` int(11) DEFAULT NULL,
-  `TrangThai` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `SoPhong` int(11) DEFAULT NULL,
-  `NoiDung` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `IdDanhMuc` int(11) DEFAULT NULL,
-  `IdUser` int(11) DEFAULT NULL,
-  `BanDo` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `NgayTao` datetime DEFAULT NULL,
-  `NgayCapNhat` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `MoTa` text DEFAULT NULL,
+  `Id_DanhMuc` int(11) DEFAULT NULL,
+  `Id_User` int(11) DEFAULT NULL,
+  `status` enum('pending','approved','rejected') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Dumping data for table `phongtro`
 --
 
-INSERT INTO `phongtro` (`Id`, `TieuDe`, `TenPhong`, `HinhAnh`, `MoTa`, `SoNha`, `Phuong`, `SoTang`, `PhongNgu`, `VeSinh`, `Gia`, `DienTich`, `TrangThai`, `SoPhong`, `NoiDung`, `IdDanhMuc`, `IdUser`, `BanDo`, `NgayTao`, `NgayCapNhat`) VALUES
-(1, 'Cho Thuê Phòng Trọ', 'Phòng 1', 'hinh1.jpg', 'cho ở ghép', '12 Nguyễn Nhạc', 'Ngô Mây', 3, 1, 'Riêng', 1500000, 30, 'Còn trống', 2, ' ', 1, 1, 'map1.jpg', '2023-10-11 22:21:32', '2023-10-11 22:21:32'),
-(2, 'Cho Thuê Căn Hộ', 'Căn hộ', 'hinh2.jpg', 'cho hộ gia đình thuê', '02 Ngô Mây', 'Ngô Mây', 2, 2, 'Riêng', 5000000, 50, 'Đã cho thuê', 0, 'N', 2, 2, 'map2.jpg', '2023-10-11 22:21:32', '2023-10-11 22:21:32'),
-(3, 'Cho Thuê SleepBox', 'Sleepbox', 'hinh3.jpg', 'Cho sinh viên thuê', '02 Quang Trung', 'Quang Trung', 3, 1, 'Chung', 200000, 15, 'Còn trống', 3, '', 3, 3, 'map3.jpg', '2023-10-11 22:21:32', '2023-10-11 22:21:32');
+INSERT INTO `phongtro` (`Id_PhongTro`, `TieuDe`, `LoaiHinhChoThue`, `HinhAnh`, `DiaChiCuThe`, `Phuong`, `Gia`, `DienTich`, `SoPhong`, `MoTa`, `Id_DanhMuc`, `Id_User`, `status`) VALUES
+(1, 'Cho Thuê', 'Phòng Trọ', 'image1.jpg', '18 a, Nguyễn Nhạc', 'Phường Ngô Mây', 1000.50, 50, 2, 'Mô tả phòng trọ 1', 1, 1, 'pending'),
+(2, 'Cho Thuê', 'Sleepbox', 'image2.jpg', '22 Nguyễn Huệ', 'Phường Quang Trung', 1500.75, 60, 3, 'Mô tả phòng trọ 2', 2, 2, 'approved');
 
 -- --------------------------------------------------------
 
@@ -112,20 +101,20 @@ INSERT INTO `phongtro` (`Id`, `TieuDe`, `TenPhong`, `HinhAnh`, `MoTa`, `SoNha`, 
 --
 
 CREATE TABLE `timtro` (
-  `Id` int(11) NOT NULL,
-  `TenBaiViet` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `NoiDung` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `Id_User` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `Id_TimTro` int(11) NOT NULL,
+  `TenBaiViet` text DEFAULT NULL,
+  `NoiDung` text DEFAULT NULL,
+  `Id_User` int(11) DEFAULT NULL,
+  `status` enum('pending','approved','rejected') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Dumping data for table `timtro`
 --
 
-INSERT INTO `timtro` (`Id`, `TenBaiViet`, `NoiDung`, `Id_User`) VALUES
-(1, 'Tìm trọ', 'Cần tìm một phòng trọ 20m2, giá nhỏ hơn 2tr', 1),
-(2, 'Tìm căn hộ', 'Tìm căn hộ cho gia đình 4 người, 40m2, giá nhỏ hơn 4tr', 2),
-(3, 'Tìm Sleepbox', 'Sinh viên cần tìm trọ nhỏ hơn 300k', 3);
+INSERT INTO `timtro` (`Id_TimTro`, `TenBaiViet`, `NoiDung`, `Id_User`, `status`) VALUES
+(1, 'Bài viết 1', 'Nội dung bài viết 1', 1, 'pending'),
+(2, 'Bài viết 2', 'Nội dung bài viết 2', 2, 'rejected');
 
 -- --------------------------------------------------------
 
@@ -134,23 +123,109 @@ INSERT INTO `timtro` (`Id`, `TenBaiViet`, `NoiDung`, `Id_User`) VALUES
 --
 
 CREATE TABLE `users` (
-  `Id` int(11) NOT NULL,
-  `TenDangNhap` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `Email` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `Sdt` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `MatKhau` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `Id_User` int(11) NOT NULL,
+  `Ho` text DEFAULT NULL,
+  `Ten` text NOT NULL,
+  `Email` text DEFAULT NULL,
+  `Sdt` text DEFAULT NULL,
+  `MatKhau` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`Id`, `TenDangNhap`, `Email`, `Sdt`, `MatKhau`) VALUES
-(1, 'user1', 'user1@gmail.com', '1234567890', '123'),
-(2, 'user2', 'user2@gmail.com', '2345678901', '123'),
-(3, 'user3', 'user3@gmail.com', '3456789012', '123'),
-(4, 'user4', 'user4@gmail.com', '4567890123', '123'),
-(5, 'user5', 'user5@gmail.com', '5678901234', '123');
+INSERT INTO `users` (`Id_User`, `Ho`, `Ten`, `Email`, `Sdt`, `MatKhau`) VALUES
+(1, 'Nguyễn', 'Hương', 'huong@gmail.com', '1234567891', '123'),
+(2, 'Trần', 'Hà', 'ha@gmail.com', '1234567892', '123');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `danhmuc`
+--
+ALTER TABLE `danhmuc`
+  ADD PRIMARY KEY (`Id_DanhMuc`);
+
+--
+-- Indexes for table `phongtro`
+--
+ALTER TABLE `phongtro`
+  ADD PRIMARY KEY (`Id_PhongTro`),
+  ADD KEY `Id_DanhMuc` (`Id_DanhMuc`),
+  ADD KEY `Id_User` (`Id_User`);
+
+--
+-- Indexes for table `timtro`
+--
+ALTER TABLE `timtro`
+  ADD PRIMARY KEY (`Id_TimTro`),
+  ADD KEY `Id_User` (`Id_User`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`Id_User`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `danhmuc`
+--
+ALTER TABLE `danhmuc`
+  MODIFY `Id_DanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `phongtro`
+--
+ALTER TABLE `phongtro`
+  MODIFY `Id_PhongTro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `timtro`
+--
+ALTER TABLE `timtro`
+  MODIFY `Id_TimTro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `Id_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `phongtro`
+--
+ALTER TABLE `phongtro`
+  ADD CONSTRAINT `phongtro_ibfk_1` FOREIGN KEY (`Id_DanhMuc`) REFERENCES `danhmuc` (`Id_DanhMuc`),
+  ADD CONSTRAINT `phongtro_ibfk_2` FOREIGN KEY (`Id_User`) REFERENCES `users` (`Id_User`);
+
+--
+-- Constraints for table `timtro`
+--
+ALTER TABLE `timtro`
+  ADD CONSTRAINT `timtro_ibfk_1` FOREIGN KEY (`Id_User`) REFERENCES `users` (`Id_User`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

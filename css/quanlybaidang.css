@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+    outline: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* Tùy chỉnh phần bài đăng */
+h2 {
+    font-size: 18px;
+    color: #333;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.tongquat {
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.noidung {
+    flex: 1;
+}
+.xuly button{
+    width: 100px !important; /* Độ rộng mong muốn */
+    height: 40px !important; /* Chiều cao mong muốn */
+    color: white !important;
+    border: none !important;
+    cursor: pointer !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 5px !important; /* Khoảng cách giữa các nút */
+    border-radius: 5px !important;
+}
+.approve-button{
+    background-color: #4CAF50 !important;
+}
+.delete-button{
+    background-color: #c41e1e !important;
+}
