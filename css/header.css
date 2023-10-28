@@ -36,7 +36,6 @@
   /* Sử dụng animation với keyframes để tạo hiệu ứng chuyển động */
 }
 
-
 .information div {
   display: inline-block;
   margin-right: 25px;
@@ -51,7 +50,34 @@
   font-weight: 700;
   text-decoration: none;
 }
+.top-right-container {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.to-post {
+  text-align: center;
+  width: 150px;
+  padding: 30px;
+  font-style: inherit;
+  display: inline-block;
+}
 
+#dangbai {
+  padding: 10px;
+  background-color: #ecb207;
+  border-radius: 10px;
+}
+#dangbai:hover {
+  background-color: cadetblue;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+#dangbai a:hover {
+  color: #fff;
+}
 .user-control li {
   display: inline-block;
   margin-right: 25px;
@@ -165,16 +191,6 @@ button[type="submit"]:hover {
   font-size: 14px;
 }
 
-#dangbai {
-  background-color: #ecb207;
-  border-radius: 10px;
-}
-
-#dangbai :hover {
-  background-color: cadetblue;
-  border-radius: 10px;
-}
-
 /*======== HEADER BOTTOM : END ========*/
 /* Tài khoản */
 .account {
@@ -183,8 +199,7 @@ button[type="submit"]:hover {
   position: relative;
   /* Đặt phần tử account thành tương đối */
   width: 100px;
-  cursor: pointer; 
-
+  cursor: pointer;
 }
 
 .account a {
@@ -212,7 +227,7 @@ button[type="submit"]:hover {
   height: auto;
   /* Để nội dung có thể mở rộng theo chiều dọc */
 }
-.account-content{
+.account-content {
   width: 100%;
   height: 100%;
 }
