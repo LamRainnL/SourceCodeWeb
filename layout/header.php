@@ -34,35 +34,24 @@ session_start();
             if (mysqli_num_rows($result)) {
                 $row = mysqli_fetch_array($result);
                     //Nếu tồn tại thì thay đổi nội dung của chỗ đăng nhập
-                    echo '<div class="account" id="account" >
+                    echo '<div class="header-right">
+                    <div class="account" id="account" >
                     Hii,  ' . $_SESSION['ten'] . ' !
                     <div class="account-content-container">
                         <div class="account-content">
-                            <a href="profile.php?id='.$_SESSION['id'].'">Hồ sơ của bạn</a> </br>
+                            <a href="profile.php?id='.$_SESSION['id'].'"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Hồ sơ của bạn</a> </br>
                             <hr>
-                            <a href="logout.php" id="logout">Đăng xuất  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                            <a href="logout.php" id="logout">  <i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất</a>
                         </div>
                     </div>
+                 </div>
+                 <div id="dangbai"><a href="dangbai.php">Đăng Bài</a></div>
                  </div>';
                 
             }
+        }
             //Nếu tồn tại thì thay đổi nội dung của chỗ đăng nhập
-            echo '
-            <div class="top-right-container">
-                <div id="dangbai"><a href="dangbai.php">Đăng Bài</a></div>
-                <div class="account" id="account" >
-                        Hii,  ' . $_SESSION["ten"] . ' !
-                        <div class="account-content-container">
-                            <div class="account-content">
-                                <a href="profile.php">Hồ sơ của bạn</a> </br>
-                                <hr>
-                                <a href="logout.php" id="logout">Đăng xuất  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            ';
-        } else {
+          else {
             echo '
         <div class="user-control">
             <ul>
@@ -77,6 +66,7 @@ session_start();
     
 		    ';
         }
+    
         ?>
     </div>
     <script>
