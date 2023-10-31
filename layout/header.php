@@ -33,13 +33,13 @@ session_start();
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result)) {
                 $row = mysqli_fetch_array($result);
-                    //Nếu tồn tại thì thay đổi nội dung của chỗ đăng nhập
-                    echo '<div class="header-right">
+                //Nếu tồn tại thì thay đổi nội dung của chỗ đăng nhập
+                echo '<div class="header-right">
                     <div class="account" id="account" >
                     Hii,  ' . $_SESSION['ten'] . ' !
                     <div class="account-content-container">
                         <div class="account-content">
-                            <a href="profile.php?id='.$_SESSION['id'].'"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Hồ sơ của bạn</a> </br>
+                            <a href="profile.php?id=' . $_SESSION['id'] . '"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Hồ sơ của bạn</a> </br>
                             <hr>
                             <a href="logout.php" id="logout">  <i class="fa fa-sign-out" aria-hidden="true"></i>Đăng xuất</a>
                         </div>
@@ -47,11 +47,10 @@ session_start();
                  </div>
                  <div id="dangbai"><a href="dangbai.php">Đăng Bài</a></div>
                  </div>';
-                
             }
         }
-            //Nếu tồn tại thì thay đổi nội dung của chỗ đăng nhập
-          else {
+        //Nếu tồn tại thì thay đổi nội dung của chỗ đăng nhập
+        else {
             echo '
         <div class="user-control">
             <ul>
@@ -66,7 +65,7 @@ session_start();
     
 		    ';
         }
-    
+
         ?>
     </div>
     <script>

@@ -212,7 +212,7 @@
                     }
                     echo "</ul>";
                 } else {
-                    echo "Không có sản phẩm nào!";
+                    echo "Không bài đăng nào!";
                 }
                 ?>
                 <!-- <ul class="list-item">

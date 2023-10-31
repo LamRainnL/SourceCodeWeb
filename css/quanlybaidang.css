@@ -61,3 +61,45 @@ p {
 .delete-button{
     background-color: #c41e1e !important;
 }
+/* CSS cho bố cục cột và danh sách */
+.container {
+    display: flex; /* Sử dụng bố cục dạng flexbox */
+}
+
+.column {
+    flex: 1; /* Đặt độ rộng của cột */
+    padding: 20px; /* Khoảng cách giữa cột và nội dung */
+    border: 1px solid #ccc; /* Đường viền xung quanh cột */
+    margin: 10px; /* Khoảng cách giữa các cột */
+    border-radius: 5px;
+}
+
+/* Thiết kế danh sách chờ duyệt */
+h1 {
+    font-size: 24px; /* Kích thước tiêu đề */
+    color: #333; /* Màu chữ tiêu đề */
+}
+
+/* Tuỳ chỉnh CSS cho từng loại danh sách */
+.tin-tim-tro {
+    background-color: #f2f2f2; /* Màu nền cho danh sách tìm trọ */
+}
+
+.tin-cho-thue {
+    background-color: #e4e4e4; /* Màu nền cho danh sách cho thuê trọ */
+}
+
+/* Thiết kế các nút duyệt và từ chối */
+.approve-button, .delete-button {
+    background-color: #4CAF50; /* Màu nền cho nút duyệt */
+    color: white; /* Màu chữ nút duyệt */
+    border: none; /* Loại bỏ đường viền */
+    padding: 10px 20px; /* Kích thước nút */
+    cursor: pointer; /* Biểu tượng con trỏ khi di chuột vào nút */
+    margin: 5px; /* Khoảng cách giữa nút */
+}
+
+.delete-button {
+    background-color: #f44336; /* Màu nền cho nút từ chối */
+}
+

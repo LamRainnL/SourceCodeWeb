@@ -1,3 +1,7 @@
+
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,17 +22,29 @@
             <div class="top">Đăng bài cho thuê trọ</div>
             <hr>
             <div class="mid">
-                <form action="/process/xulydangbai.php" method="post" enctype="multipart/form-data">
+                <form action="/process/xulydangbaichothue.php" method="post" enctype="multipart/form-data">
                     <div class="form-group"><label for="tieude">Tiêu Đề:</label>
                         <input type="text" name="tieude" id="tieude" required><br>
                     </div>
                     <div class="form-group">
                         <label for="loaihinhchothue">Loại Hình Cho Thuê:</label>
-                        <select name="loaihinhchothue" id="loaihinhchothue">
-                            <option value="NhaNguyenCan">Nhà Nguyên Căn</option>
-                            <option value="PhongTro">Phòng Trọ</option>
-                            <!-- Thêm các loại hình khác vào đây -->
-                        </select><br>
+                            <?php
+                                $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
+                                mysqli_query($kn, "SET NAMES 'utf8'");
+                                $sql = "SELECT * FROM danhmuc";
+                                $result = mysqli_query($kn, $sql);
+                                if(mysqli_num_rows($result)){
+                                    echo '<select name="loaihinhchothue" id="loaihinhchothue">';
+                                    while($row=mysqli_fetch_array($result)){
+                                    $ma=$row['Id_DanhMuc'];
+                                    $_SESSION['Id_DanhMuc']=$ma;
+                                    $ten=$row['TenDanhMuc'];
+                                    echo"<option value='$ma'>$ten</option>";
+                                    }
+                                }
+                                echo '</select><br>';
+                                mysqli_close($conn);
+                                ?>
                     </div>
                     <div class="form-group">
                         <label for="hinhanh">Hình Ảnh:</label>
