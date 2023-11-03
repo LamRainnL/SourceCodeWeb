@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
 	if($result){
 				echo"<script> 
 						alert('Bài đăng đã được duyệt.'); 
-                        window.history.back();
+						window.location.href = 'quanlybaidang.php';
                         </script>";
 				}
 			else{

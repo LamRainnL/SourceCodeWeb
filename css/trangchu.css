@@ -392,3 +392,43 @@ footer {
 }
 
 /*===== FOOTER : END =====*/
+/* Nội dung */
+.tongquat {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.tongquat:hover{
+    background-color: #8f8f96e7;
+    border-radius: 5px;
+}
+.tongquat a{
+    color: black;
+    text-decoration: none;
+}
+.container h1{
+    text-align: center !important;
+}
+.noidung {
+    flex: 1;
+}
+.container {
+    display: flex; /* Sử dụng bố cục dạng flexbox */
+}
+
+.column {
+    flex: 1; /* Đặt độ rộng của cột */
+    padding: 20px; /* Khoảng cách giữa cột và nội dung */
+    border: 1px solid #ccc; /* Đường viền xung quanh cột */
+    margin: 10px; /* Khoảng cách giữa các cột */
+    border-radius: 5px;
+}
+
+/* Thiết kế danh sách chờ duyệt */
+h1 {
+    font-size: 24px; /* Kích thước tiêu đề */
+    color: #333; /* Màu chữ tiêu đề */
+}

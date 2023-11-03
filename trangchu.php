@@ -193,55 +193,51 @@
                     <h1>BÀI VIẾT MỚI</h1>
                 </div>
                 <?php
-                $conn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không thể kết nối");
-                $sql = "select * from timtro where status='approved'";
-                mysqli_query($conn, "SET NAMES 'utf8'");
-                $result = mysqli_query($conn, $sql);
-                if (mysqli_num_rows($result)) {
-                    echo "<ul class='danhsachbaiviet'>";
-                    while ($row = mysqli_fetch_array($result)) {
-                        $id = $row['Id_TimTro'];
-                        $ten = $row['TenBaiViet'];
-                        $noidung = $row['NoiDung'];
-                        echo "<li class='baiviet'>
-                            <a href='trangphongchitiet.php?id=$id'>
-                            <h3>$ten</h3>
-                            <h3>$noidung</h3>
-                            </a>
-                          </li>";
-                    }
-                    echo "</ul>";
-                } else {
-                    echo "Không bài đăng nào!";
+                $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
+
+                $caulenh = "select * from timtro where status='approved'";
+                $result = mysqli_query($kn, $caulenh);
+                $caulenh1 = "select * from phongtro where status='approved'";
+                $result1 = mysqli_query($kn, $caulenh1);
+                echo "<div class='container'>
+                    <div class='column'>
+            <h1>Bài đăng tìm trọ</h1>
+            <hr>";
+                while ($row = mysqli_fetch_array($result)) {
+                    $id = $row["Id_TimTro"];
+                    echo "<div class='tongquat'>
+                <a href='trangphongchitiet.php?id=$id'><div class='noidung'>
+                    <h2>" . $row["TenBaiViet"] . "</h2>
+                    <p>" . $row["NoiDung"] . "</p>
+                </div></a>
+                
+            </div>";
                 }
+                echo ' </div>';
+                echo "<div class='column'>
+                <h1>Bài đăng cho thuê trọ</h1>
+                <hr>";
+
+                while ($row = mysqli_fetch_array($result1)) {
+                    $id1 = $row["Id_PhongTro"];
+                    echo "<div class='tongquat'>
+                <a href='trangphongchitiet.php?id=$id1'><div class='noidung'>
+                    <h2>" . $row["TieuDe"] . "</h2>
+                    <p>" . $row["LoaiHinhChoThue"] . "</p>
+                    <img src=" . $row["HinhAnh"] . "alt='hinhanh'/>
+                    <p>" . $row["DiaChiCuThe"] . "</p>
+                    <p>" . $row["Phuong"] . "</p>
+                    <p>" . $row["Gia"] . "</p>
+                    <p>" . $row["DienTich"] . "</p>
+                    <p>" . $row["SoPhong"] . "</p>
+                    <p>" . $row["MoTa"] . "</p>
+                </div></a>       
+            </div>";
+                }
+                echo '</div>
+                    </div>';
+                mysqli_close($kn);
                 ?>
-                <!-- <ul class="list-item">
-                    <a href="trangphongchitiet.php">
-                        <li>
-                            <div class="card">
-                                <div class="image">
-                                    <img src="/images/demo2.jpg" alt="image" />
-                                </div>
-                                <div class="text">
-                                    <h3>
-                                        Cho thuê phòng mới diện tích 35m2, giá 5tr/tháng có sẵn
-                                        đầy đủ nội thất
-                                    </h3>
-                                    <span class="price">3.000.000 VNĐ</span>
-                                    <span class="area">15m²</span>
-                                    <p class="location">
-                                        <i class="fa fa-thumb-tack" aria-hidden="true"></i> 02/64
-                                        An Dương Vương
-                                    </p>
-                                    <p class="description">
-                                        Chính chủ cho thuê phòng trọ t.Phòng trọ rộng rãi, thoáng
-                                        mát, an ninh, tiện ích đầy đủ , tổng diện tích 15m²
-                                    </p>
-                                </div>
-                            </div>
-                        </li>
-                    </a>
-                </ul> -->
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
 	if($result){
 				echo"<script> 
 						alert('Đã từ chối bài đăng.'); 
-                        window.history.back();
+						window.location.href = 'quanlybaidang.php';
                         </script>";
 				}
 			else{

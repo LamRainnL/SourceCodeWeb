@@ -15,8 +15,6 @@
 
 
     <?php
-    require 'layout/header.php';
-
     $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
 
     $caulenh = "select * from timtro where status='pending'";
@@ -85,7 +83,6 @@
     echo '</div>
         </div>';
     mysqli_close($kn);
-    require 'layout/footer.php';
     ?>
 </body>
 
