@@ -53,16 +53,17 @@
 
     while ($row = mysqli_fetch_array($result1)) {
         echo "<div class='tongquat'>
-    <div class='noidung'>
-        <h2>" . $row["TieuDe"] . "</h2>
-        <p>" . $row["LoaiHinhChoThue"] . "</p>
-        <img src=" . $row["HinhAnh"] . "alt='hinhanh'/>
-        <p>" . $row["DiaChiCuThe"] . "</p>
-        <p>" . $row["Phuong"] . "</p>
-        <p>" . $row["Gia"] . "</p>
-        <p>" . $row["DienTich"] . "</p>
-        <p>" . $row["SoPhong"] . "</p>
-        <p>" . $row["MoTa"] . "</p>
+        <div class='noidung'>
+        <div class='left'>
+            <img src='/process/" . $row["HinhAnh"] . "' alt='hinhanh'/>
+        </div>
+        <div class='right'>
+            <h2>" . $row["TieuDe"] . "</h2>
+            <p>Phường: " . $row["Phuong"] . "</p>
+            <p>Giá thuê: " . $row["Gia"] . " VNĐ</p>
+            <p>Số phòng: " . $row["SoPhong"] . "</p>
+            <p>Diện tích: " . $row["DienTich"] . " m²</p>
+        </div>
     </div>
     <div class='xuly'>
         <form method='POST' action='approve_post1.php'>

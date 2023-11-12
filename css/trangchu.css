@@ -197,7 +197,7 @@ ul {
 /* MAIN CONTENT */
 #main .main-content {
     float: left;
-    width: 70%;
+    width: 100%;
     height: auto;
     margin-left: 50px;
 }
@@ -412,8 +412,21 @@ footer {
 .container h1{
     text-align: center !important;
 }
+
 .noidung {
+    display: flex;
+}
+.left{
     flex: 1;
+    margin-right: 10px;
+}
+.left img{
+    width: 100%;
+    height: auto;
+}
+.right{
+    flex: 2;
+
 }
 .container {
     display: flex; /* Sử dụng bố cục dạng flexbox */

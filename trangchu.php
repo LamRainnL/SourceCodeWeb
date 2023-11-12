@@ -159,7 +159,7 @@
     <!-- PAGE CONTENT : END -->
     <!-- MAIN : START -->
     <div id="main">
-        <section id="sidebar">
+        <!-- <section id="sidebar">
             <section class="link-list">
                 <span class="title">Xem theo giá</span>
                 <hr>
@@ -185,7 +185,7 @@
                     <li><a href="#">70 - 100m2</a></li>
                 </ul>
             </section>
-        </section>
+        </section> -->
         <!-- MAIN CONTENT : START -->
         <div class="main-content">
             <div class="top-list">
@@ -206,11 +206,11 @@
                 while ($row = mysqli_fetch_array($result)) {
                     $id = $row["Id_TimTro"];
                     echo "<div class='tongquat'>
-                <a href='trangphongchitiet.php?id=$id'><div class='noidung'>
+                <a href='trangphongchitiet.php?id=$id'>
+                <div class='noidungtimtro'>
                     <h2>" . $row["TenBaiViet"] . "</h2>
                     <p>" . $row["NoiDung"] . "</p>
-                </div></a>
-                
+                </div></a>   
             </div>";
                 }
                 echo ' </div>';
@@ -221,17 +221,20 @@
                 while ($row = mysqli_fetch_array($result1)) {
                     $id1 = $row["Id_PhongTro"];
                     echo "<div class='tongquat'>
-                <a href='trangphongchitiet.php?id=$id1'><div class='noidung'>
-                    <h2>" . $row["TieuDe"] . "</h2>
-                    <p>" . $row["LoaiHinhChoThue"] . "</p>
-                    <img src=" . $row["HinhAnh"] . "alt='hinhanh'/>
-                    <p>" . $row["DiaChiCuThe"] . "</p>
-                    <p>" . $row["Phuong"] . "</p>
-                    <p>" . $row["Gia"] . "</p>
-                    <p>" . $row["DienTich"] . "</p>
-                    <p>" . $row["SoPhong"] . "</p>
-                    <p>" . $row["MoTa"] . "</p>
-                </div></a>       
+                <a href='trangphongchitiet.php?id=$id1'>
+                <div class='noidung'>
+                    <div class='left'>
+                        <img src='/process/" . $row["HinhAnh"] . "' alt='hinhanh'/>
+                    </div>
+                    <div class='right'>
+                        <h2>" . $row["TieuDe"] . "</h2>
+                        <p>Phường: " . $row["Phuong"] . "</p>
+                        <p>Giá thuê: " . $row["Gia"] . " VNĐ</p>
+                        <p>Số phòng: " . $row["SoPhong"] . "</p>
+                        <p>Diện tích: " . $row["DienTich"] . " m²</p>
+                    </div>
+                </div>
+                </a>       
             </div>";
                 }
                 echo '</div>
