@@ -9,8 +9,8 @@
   $email=$_POST["email"];
   //1.KẾT NỐI
   $kn=mysqli_connect("localhost","root","","webtimtro") or die("Không kết nối được");
-  //2.CHỌN CSDL
-  //3.QUY ĐỊNH BẢNG MÃ KẾT NỐI CỦA MÌNH
+  mysqli_set_charset($kn, "utf8");
+  mysqli_set_charset($kn, "utf8mb4");
   //4.XÂY DỰNG CÂU LỆNH TRUY VẤN
   $caulenh="insert into users (Ho,Ten,Email,Sdt,MatKhau) value ('".$ho."','".$ten."','".$email."','".$sdt."','".$matkhau."')";
   $caulenhcheck="select * from users where Sdt='".$sdt."'";

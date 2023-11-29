@@ -28,8 +28,9 @@ session_start();
         //kiểm tra xem biến session đã tồn tại hay chưa
         if (isset($_SESSION["ten"])) {
             $conn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không thể kết nối");
+            mysqli_set_charset($conn, "utf8");
+            mysqli_set_charset($conn, "utf8mb4");
             $sql = "select * from users";
-            mysqli_query($conn, "SET NAMES 'utf8'");
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result)) {
                 $row = mysqli_fetch_array($result);

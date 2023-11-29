@@ -18,17 +18,17 @@
             <a href="trangchu.php" id="homeicon"><i class="fa fa-home" aria-hidden="true"></i></a>
             <h1 class="form-heading">Hồ sơ cá nhân</h1>
             <?php
-            $conn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không thể kết nối");
-
+            $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không thể kết nối");
+            mysqli_set_charset($kn, "utf8mb4");
+            mysqli_set_charset($kn, "utf8");
             // Lấy ID từ đường dẫn URL
             $id = $_GET['id'];
             // Truy vấn CSDL để lấy thông tin người dùng
             $sql = "SELECT * FROM users WHERE Id_User = $id";
-            mysqli_query($conn, "SET NAMES 'utf8'");
-            $result = mysqli_query($conn, $sql);
+            $result = mysqli_query($kn, $sql);
             // Kiểm tra lỗi trong truy vấn SQL
             if ($result === false) {
-                die("Lỗi truy vấn: " . mysqli_error($conn));
+                die("Lỗi truy vấn: " . mysqli_error($kn));
             }
             if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_array($result);
@@ -58,7 +58,7 @@
                 echo 'Không tìm thấy dữ liệu!';
             }
 
-            mysqli_close($conn);
+            mysqli_close($kn);
             ?>
 
             <input type="submit" name="submit" value="Update" id="update-button" class="form-submit">

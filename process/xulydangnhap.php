@@ -6,6 +6,8 @@ if (isset($_POST['submit'])) {
 	$pass = $_POST["password"];
 	//Kết nối
 	$kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
+	mysqli_set_charset($kn, "utf8");
+	mysqli_set_charset($kn, "utf8mb4");
 	//Xây dựng câu lệnh truy vấn
 	$caulenh = "select * from users where Sdt='" . $sdt . "'";
 	$admin = "select * from admins where TenDangNhap='" . $sdt . "'";
@@ -30,16 +32,14 @@ if (isset($_POST['submit'])) {
 				  </script>";
 		} else {
 			$ten = $row['Ten'];
-			$id=$row['Id_User'];
-			$_SESSION['id']=$id;
+			$id = $row['Id_User'];
+			$_SESSION['id'] = $id;
 			$_SESSION['ten'] = $ten;
-			echo"<script> 
+			echo "<script> 
 							alert('Đăng nhập thành công'); 
 							window.location.href = '/trangchu.php';
 						  </script>";
 		}
 	}
 	mysqli_close($kn);
-
 }
-?>

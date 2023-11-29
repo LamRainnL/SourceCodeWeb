@@ -7,7 +7,8 @@ if (isset($_POST['submit'])) {
     $email = $_POST["email"];
 
     $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không thể kết nối!");
-
+    mysqli_set_charset($kn, "utf8mb4");
+    mysqli_set_charset($kn, "utf8");
     $sql = "SELECT * FROM users WHERE Id_User = " . $_SESSION['id'];
     $result = mysqli_query($kn, $sql);
 
