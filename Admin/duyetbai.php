@@ -11,9 +11,11 @@
 </head>
 
 <body>
-
-
-
+    <br>
+    <div style="float: right; margin-right: 20px;">
+        <a href="/Admin/baidang.php">Quản lý bài đăng</a>
+    </div>
+    <br>
     <?php
     $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
 
@@ -27,18 +29,18 @@
 
     while ($row = mysqli_fetch_array($result)) {
         echo "<div class='tongquat'>
-    <div class='noidung'>
-        <h2>" . $row["TenBaiViet"] . "</h2>
+    <div>
+        <h2>" . $row["TenBaiViet"] . "</h2></br>
         <p>" . $row["NoiDung"] . "</p>
     </div>
     <div class='xuly'>
-        <form method='POST' action='approve_post.php'>
+        <form method='POST' action='/Admin/processAdmin/approve_post.php'>
             <input type='hidden' name='post_id' value='" . $row["Id_TimTro"] . "'>
             <button type='submit' name='submit' class='approve-button'>
                 <i class='fas fa-check'></i> Duyệt
             </button>
         </form>
-        <form method='POST' action='delete_post.php'>
+        <form method='POST' action='/Admin/processAdminrejected_post.php'>
             <input type='hidden' name='post_id' value='" . $row["Id_TimTro"] . "'>
             <button type='submit' name='submit' class='delete-button'>
                 <i class='fas fa-trash'></i> Từ chối
@@ -66,13 +68,13 @@
         </div>
     </div>
     <div class='xuly'>
-        <form method='POST' action='approve_post1.php'>
+        <form method='POST' action='/Admin/processAdmin/approve_post1.php'>
             <input type='hidden' name='post_id' value='" . $row["Id_PhongTro"] . "'>
             <button type='submit' name='submit' class='approve-button'>
                 <i class='fas fa-check'></i> Duyệt
             </button>
         </form>
-        <form method='POST' action='delete_post1.php'>
+        <form method='POST' action='/Admin/processAdmin/rejected_post1.php'>
             <input type='hidden' name='post_id' value='" . $row["Id_PhongTro"] . "'>
             <button type='submit' name='submit' class='delete-button'>
                 <i class='fas fa-trash'></i> Từ chối

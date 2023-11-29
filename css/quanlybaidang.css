@@ -39,7 +39,6 @@ p {
     display: flex;
     justify-content: space-between;
 }
-
 .noidung {
     flex: 1;
 }

@@ -6,12 +6,12 @@ if(isset($_POST['submit'])){
 	//Kết nối
 	$kn=mysqli_connect("localhost","root","","webtimtro") or die ("Không thể kết nối!");
 	//Xây dựng câu lệnh truy vấn
-    $sql = "UPDATE timtro SET status = 'rejected' WHERE Id_TimTro = '".$post_id."'";	
+    $sql = "UPDATE phongtro SET status = 'rejected' WHERE Id_PhongTro = '".$post_id."'";	
     $result=mysqli_query($kn,$sql);
 	if($result){
 				echo"<script> 
-						alert('Đã từ chối bài đăng.'); 
-						window.location.href = 'quanlybaidang.php';
+						alert('Đã xóa bài.'); 
+						window.location.href = '/Admin/baidang.php';
                         </script>";
 				}
 			else{

@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
 	if($result){
 				echo"<script> 
 						alert('Bài đăng đã được duyệt.'); 
-						window.location.href = 'quanlybaidang.php';
+						window.location.href = '/Admin/duyetbai.php';
                         </script>";
 				}
 			else{

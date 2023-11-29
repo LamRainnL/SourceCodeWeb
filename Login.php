@@ -14,7 +14,7 @@
 
 <body>
     <div id="wrapper">
-        <form action="process/xulydangnhap.php" id="form-login" method="post">
+        <form action="process/xulydangnhap.php" id="form-login" method="post" onsubmit="return handleSubmit()">
             <a href="trangchu.php" id="homeicon"><i class="fa fa-home" aria-hidden="true"></i> </a>
             <h1 class="form-heading">Đăng Nhập</h1>
             <div class="form-group">
@@ -23,22 +23,9 @@
                 <!-- Kiểm tra sdt  -->
                 <span id="phoneError" style="color: red;"></span>
                 <script>
-                    function validatePhoneNumber(phoneNumber) {
-                        // Mẫu định dạng số điện thoại cho Việt Nam (10 chữ số, bắt đầu bằng "0" hoặc "+84")
-                        var phonePattern = /^(?:0|\+84)[1-9]\d{8}$/;
+                    var loginTimer; // Biến để theo dõi thời gian nhấn giữ
+                    var formSubmitted = false;
 
-                        if (phonePattern.test(phoneNumber)) {
-                            document.getElementById('phoneError').textContent = '';
-                        } else {
-                            document.getElementById('phoneError').textContent = 'Số điện thoại không hợp lệ';
-                        }
-                    }
-                </script>
-                <!-- Kiểm tra, ngăn chặn việc nhập sai số điện thoại khi người dùng đăng nhập-->
-                <script>
-                    var formSubmitted = false; // Biến để theo dõi trạng thái submit
-
-                    // Hàm kiểm tra số điện thoại
                     function validatePhoneNumber(phoneNumber) {
                         var phonePattern = /^(?:0|\+84)[1-9]\d{8}$/;
                         var phoneError = document.getElementById('phoneError');
@@ -47,22 +34,46 @@
                         if (phonePattern.test(phoneNumber)) {
                             phoneError.textContent = '';
                             if (!formSubmitted) {
-                                changeButton.disabled = false; // Cho phép đổi mật khẩu nếu chưa submit
+                                changeButton.disabled = false;
                             }
                         } else {
                             phoneError.textContent = 'Số điện thoại không hợp lệ';
                             if (!formSubmitted) {
-                                changeButton.disabled = true; // Ngăn chặn đổi mật khẩu nếu chưa submit
+                                changeButton.disabled = true;
                             }
                         }
                     }
 
-                    // Hàm xử lý form submit
+                    function handleMouseDown() {
+                        // Kiểm tra xem có phải là lần nhấn đầu tiên hay không
+                        if (!formSubmitted) {
+                            loginTimer = setTimeout(function () {
+                                // Nếu nhấn giữ trong 3 giây, chuyển hướng đến trang admin_login
+                                alert('Bạn đã nhấn giữ nút đăng nhập trong 3 giây. Bạn sẽ được chuyển hướng đến trang Đăng nhập dành cho Admin.');
+                                window.location.href = 'admin_login.php';
+
+                                // Tránh form submit khi chuyển hướng bằng JavaScript
+                                formSubmitted = true;
+                                document.getElementById('form-login').submit();
+                            }, 3000);
+                        }
+                    }
+
+                    function handleMouseUp() {
+                        // Hủy thời gian nhấn giữ nếu nhả nút trước khi đạt 3 giây
+                        clearTimeout(loginTimer);
+                    }
+
                     function handleSubmit() {
-                        formSubmitted = true; // Đánh dấu form đã được submit
+                        // Ngăn chặn form submit nếu đã nhấn giữ nút
+                        if (formSubmitted) {
+                            return false;
+                        }
+
+                        // Thực hiện các bước xử lý đăng nhập thông thường
+                        // ...
                     }
                 </script>
-
             </div>
             <div class="form-group">
                 <i class="fas fa-key"></i>
@@ -72,12 +83,10 @@
                 </div>
             </div>
             <div class="form-group1">
-
                 <a href="Change.php" class="change"><label>Đổi mật khẩu</label></a>
             </div>
-            <input type="submit" name="submit" value="Đăng nhập" id="login-button" class="form-submit">
-
-
+            <input type="submit" name="submit" value="Đăng nhập" id="login-button" class="form-submit"
+                onmousedown="handleMouseDown()" onmouseup="handleMouseUp()">
             <div class="form-group2">
                 <span>
                     Bạn chưa có tài khoản? <a href="Signup.php">Đăng ký</a>
@@ -85,7 +94,6 @@
             </div>
         </form>
     </div>
-
 </body>
 
 </html>
