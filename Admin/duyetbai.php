@@ -18,7 +18,8 @@
     <br>
     <?php
     $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
-
+    mysqli_set_charset($kn, "utf8");
+    mysqli_set_charset($kn, "utf8mb4");
     $caulenh = "select * from timtro where status='pending'";
     $result = mysqli_query($kn, $caulenh);
     $caulenh1 = "select * from phongtro where status='pending'";

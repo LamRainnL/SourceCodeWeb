@@ -30,8 +30,10 @@ if (isset($_POST['submit'])) {
 
   //1.KẾT NỐI
   $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
-  // Lấy Id_DanhMuc từ bảng danhmuc và lưu vào biến session
-  $caulenh = "insert into phongtro (TieuDe,LoaiHinhChoThue,HinhAnh,DiaChiCuThe,Phuong,Gia,DienTich,SoPhong,Mota,Id_DanhMuc,Id_User,status) value ('" . $tieude . "','" . $loaihinhchothue . "','" . $hinhanhsource . "','" . $diachicuthe . "','" . $phuong . "','" . $gia . "','" . $dientich . "','" . $sophong . "','" . $mota . "','" . $_SESSION['Id_DanhMuc'] . "','" . $_SESSION['id'] . "','" . $trangthai . "')";
+  mysqli_set_charset($kn, "utf8");
+  mysqli_set_charset($kn, "utf8mb4");
+  // Lấy Id_DanhMuc từ loại hình cho thuê được chọn
+  $caulenh = "insert into phongtro (TieuDe,LoaiHinhChoThue,HinhAnh,DiaChiCuThe,Phuong,Gia,DienTich,SoPhong,Mota,Id_DanhMuc,Id_User,status) value ('" . $tieude . "','" . $loaihinhchothue . "','" . $hinhanhsource . "','" . $diachicuthe . "','" . $phuong . "','" . $gia . "','" . $dientich . "','" . $sophong . "','" . $mota . "','" . $loaihinhchothue . "','" . $_SESSION['id'] . "','" . $trangthai . "')";
   $result = mysqli_query($kn, $caulenh);
   if ($result) {
     echo "<script>

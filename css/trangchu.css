@@ -390,8 +390,6 @@ footer {
     text-decoration: underline;
     cursor: pointer;
 }
-
-/*===== FOOTER : END =====*/
 /* Nội dung */
 .tongquat {
     max-width: 100%;
@@ -409,6 +407,10 @@ footer {
     color: black;
     text-decoration: none;
 }
+.tongquat img {
+    border-radius: 10px; 
+    overflow: hidden; /* Đảm bảo ảnh được bo góc */
+  }
 .container h1{
     text-align: center !important;
 }
@@ -429,19 +431,16 @@ footer {
 
 }
 .container {
-    display: flex; /* Sử dụng bố cục dạng flexbox */
+    display: flex;
 }
-
 .column {
     flex: 1; /* Đặt độ rộng của cột */
     padding: 20px; /* Khoảng cách giữa cột và nội dung */
-    border: 1px solid #ccc; /* Đường viền xung quanh cột */
+    border: 1px solid #ccc; 
     margin: 10px; /* Khoảng cách giữa các cột */
     border-radius: 5px;
 }
-
-/* Thiết kế danh sách chờ duyệt */
 h1 {
-    font-size: 24px; /* Kích thước tiêu đề */
-    color: #333; /* Màu chữ tiêu đề */
+    font-size: 24px; 
+    color: #333; 
 }

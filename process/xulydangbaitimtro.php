@@ -6,11 +6,7 @@ if (isset($_POST['submit'])) {
     $mota = $_POST['mota'];
     $trangthai = "pending";
     $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
-
-    if (!$kn) {
-        die("Lỗi kết nối: " . mysqli_connect_error());
-    }
-
+    mysqli_set_charset($kn, "utf8mb4");
     $caulenh = "INSERT INTO timtro (TenBaiViet, NoiDung, Id_User, status) VALUES ('$tieude', '$mota','" . $_SESSION['id'] . "', '$trangthai')";
 
     $result = mysqli_query($kn, $caulenh);

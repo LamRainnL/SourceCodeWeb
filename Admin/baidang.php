@@ -18,7 +18,8 @@
     <br>
     <?php
     $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
-
+    mysqli_set_charset($kn, "utf8");
+    mysqli_set_charset($kn, "utf8mb4");
     $caulenh = "select * from timtro where status='approved'";
     $result = mysqli_query($kn, $caulenh);
     $caulenh1 = "select * from phongtro where status='approved'";
@@ -34,9 +35,6 @@
         <p>" . $row["NoiDung"] . "</p>
     </div>
     <div class='xuly'>
-        <form method='POST' action='/Admin/processAdmin/approve_post.php'>
-            <input type='hidden' name='post_id' value='" . $row["Id_TimTro"] . "'>
-        </form>
         <form method='POST' action='/Admin/processAdmin/delete_post.php'>
             <input type='hidden' name='post_id' value='" . $row["Id_TimTro"] . "'>
             <button type='submit' name='submit' class='delete-button'>
@@ -65,9 +63,6 @@
         </div>
     </div>
     <div class='xuly'>
-        <form method='POST' action='/Admin/processAdmin/approve_post1.php'>
-            <input type='hidden' name='post_id' value='" . $row["Id_PhongTro"] . "'>
-        </form>
         <form method='POST' action='/Admin/processAdmin/delete_post1.php'>
             <input type='hidden' name='post_id' value='" . $row["Id_PhongTro"] . "'>
             <button type='submit' name='submit' class='delete-button'>

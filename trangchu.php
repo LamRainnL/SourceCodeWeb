@@ -194,6 +194,7 @@
                 </div>
                 <?php
                 $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
+                mysqli_set_charset($kn, "utf8mb4");
 
                 $caulenh = "select * from timtro where status='approved'";
                 $result = mysqli_query($kn, $caulenh);
@@ -219,9 +220,9 @@
                 <hr>";
 
                 while ($row = mysqli_fetch_array($result1)) {
-                    $id1 = $row["Id_PhongTro"];
+                    $id_pt = $row["Id_PhongTro"];
                     echo "<div class='tongquat'>
-                <a href='trangphongchitiet.php?id=$id1'>
+                <a href='trangphongchitiet.php?id=$id_pt'>
                 <div class='noidung'>
                     <div class='left'>
                         <img src='/process/" . $row["HinhAnh"] . "' alt='hinhanh'/>
