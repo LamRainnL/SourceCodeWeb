@@ -87,7 +87,7 @@ session_start();
             <a href="trangchu.php"><img src="/images/homelogo.png" alt="logo" /></a>
         </div>
         <div class="search">
-            <form class="search" action="" method="GET">
+            <form class="search" action="timkiem.php" method="GET">
                 <input type="text" name="search" id="search" placeholder="">
                 <button type="submit" name="submit"><i class="fa fa-search"></i></button>
             </form>
@@ -109,9 +109,9 @@ session_start();
         <div class="list-menu">
             <div class="child"><a href="trangchu.php">TRANG CHỦ</a></div>
             <div class="child"><a href="trangdanhsachphongtro.php">PHÒNG TRỌ</a></div>
-            <div class="child"><a href="#can_ho">CĂN HỘ</a></div>
-            <div class="child"><a href="#nha_nguyen_can">SLEEP BOX</a></div>
-            <div class="child"><a href="#nha_nguyen_can">NHÀ NGUYÊN CĂN</a></div>
+            <div class="child"><a href="trangdanhsachcanho.php">CĂN HỘ</a></div>
+            <div class="child"><a href="trangdanhsachsleepbox.php">SLEEP BOX</a></div>
+            <div class="child"><a href="trangdanhsachnhanguyencan.php">NHÀ NGUYÊN CĂN</a></div>
 
         </div>
     </div>

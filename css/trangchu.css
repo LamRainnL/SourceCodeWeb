@@ -417,6 +417,7 @@ footer {
 
 .noidung {
     display: flex;
+    align-items:center;
 }
 .left{
     flex: 1;

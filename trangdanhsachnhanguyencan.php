@@ -23,7 +23,7 @@
             // Xây dựng câu lệnh truy vấn
             $caulenh = "SELECT phongtro.* FROM phongtro 
             INNER JOIN danhmuc ON phongtro.Id_DanhMuc = danhmuc.Id_DanhMuc 
-            WHERE danhmuc.TenDanhMuc = 'Phòng trọ' and phongtro.status='approved'";
+            WHERE danhmuc.TenDanhMuc = 'Nhà nguyên căn' and phongtro.status='approved'";
 
             $kq = mysqli_query($kn, $caulenh);
 
@@ -57,8 +57,10 @@
 
             // Hiển thị thông báo nếu không có kết quả
             if (!$hasResults) {
-                echo "<p>Không có phòng trọ nào khả dụng.</p>";
+                echo "<p>Không có nhà nào khả dụng.</p>";
             }
+
+
             mysqli_close($kn);
             ?>
         </div>
