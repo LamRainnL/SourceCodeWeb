@@ -66,10 +66,11 @@
 
 #dangbai {
   padding: 10px;
+  margin-right: 40px;
   background-color: #ecb207;
   border-radius: 10px;
 }
-#dangbai a{
+#dangbai a {
   color: black;
   text-decoration: none;
 }
@@ -236,12 +237,11 @@ button[type="submit"]:hover {
   width: 100%;
   height: 100%;
   align-items: center;
-
 }
 .account-content-container.open {
   display: block;
 }
-.header-right{
+.header-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
