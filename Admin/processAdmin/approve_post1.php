@@ -10,7 +10,6 @@ if(isset($_POST['submit'])){
     $result=mysqli_query($kn,$sql);
 	if($result){
 				echo"<script> 
-						alert('Bài đăng đã được duyệt.'); 
 						window.location.href = '/Admin/duyetbai.php';
                         </script>";
 				}

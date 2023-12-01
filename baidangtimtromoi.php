@@ -190,47 +190,37 @@
         <div class="main-content">
             <div class="top-list">
                 <div class="title-content">
-                    <h1>BÀI VIẾT MỚI</h1>
-                    <a href="baidangtimtromoi.php">Bài đăng tìm trọ mới</a>
+                    <h1>BÀI ĐĂNG MỚI</h1>
+                    <a href="trangchu.php">Bài đăng cho thuê trọ mới</a>
                 </div>
                 <?php
                 $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
                 mysqli_set_charset($kn, "utf8mb4");
-                $caulenh1 = "select * from phongtro where status='approved'";
-                $result1 = mysqli_query($kn, $caulenh1);
-                $hasresult = false;
+                $caulenh = "select * from timtro where status='approved'";
+                $result = mysqli_query($kn, $caulenh);
+                $hasresult= false;
                 echo "<div class='container'>
-                
-                            <div class='column'>
-                            <h1>Bài đăng cho thuê trọ</h1>
-                            <hr>";
-
-                while ($row = mysqli_fetch_array($result1)) {
-                    $hasresult = true;
-
-                    $id_pt = $row["Id_PhongTro"];
+                    <div class='column'>
+                        <h1>Bài đăng tìm trọ</h1>
+                        <hr>";
+                while ($row = mysqli_fetch_array($result)) {
+                    $hasresult= true;
+                    $id = $row["Id_TimTro"];
                     echo "<div class='tongquat'>
-                <a href='trangphongchitiet.php?id=$id_pt'>
-                <div class='noidung'>
-                    <div class='left'>
-                        <img src='/process/" . $row["HinhAnh"] . "' alt='hinhanh'/>
-                    </div>
-                    <div class='right'>
-                        <h2>" . $row["TieuDe"] . "</h2>
-                        <p>Phường: " . $row["Phuong"] . "</p>
-                        <p>Giá thuê: " . $row["Gia"] . " VNĐ</p>
-                        <p>Số phòng: " . $row["SoPhong"] . "</p>
-                        <p>Diện tích: " . $row["DienTich"] . " m²</p>
-                        <p class='timeup'>Đã đăng: " . $row["ThoiGianDang"] . "</p>
-                    </div>
-                </div>
-                </a>       
-            </div>                <hr>
-            ";
+                <a href='trangphongchitiet.php?id=$id'>
+                <div class='noidungtimtro'>
+                    <h2>" . $row["TenBaiViet"] . "</h2>
+                    <p>" . $row["NoiDung"] . "</p>
+                    <p class='timeup'>Đã đăng: " . $row["ThoiGianDang"] . "</p>
+
+                </div></a>   
+            </div>";
                 }
-                if (!$hasresult) {
-                    echo '<p>Chưa có bài đăng mới!</p>';
+                if(!$hasresult){
+                    echo'<p>Chưa có bài đăng mới!</p>';
                 }
+                echo ' </div>';
+
                 echo '</div>
                     </div>';
                 mysqli_close($kn);

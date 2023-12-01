@@ -5,9 +5,10 @@ if (isset($_POST['submit'])) {
     $tieude = $_POST['tieude'];
     $mota = $_POST['mota'];
     $trangthai = "pending";
+    $thoigiandang = date('Y-m-d H:i:s'); // Lấy thời gian hiện tại
     $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
     mysqli_set_charset($kn, "utf8mb4");
-    $caulenh = "INSERT INTO timtro (TenBaiViet, NoiDung, Id_User, status) VALUES ('$tieude', '$mota','" . $_SESSION['id'] . "', '$trangthai')";
+    $caulenh = "INSERT INTO timtro (TenBaiViet, NoiDung, Id_User, status,ThoiGianDang) VALUES ('$tieude', '$mota','" . $_SESSION['id'] . "', '$trangthai','$thoigiandang')";
 
     $result = mysqli_query($kn, $caulenh);
 

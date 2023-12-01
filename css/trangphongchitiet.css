@@ -9,179 +9,21 @@ body {
     margin: 0;
     padding: 0;
 }
-.containers
-{
-  margin-right: auto;
-  margin-left: auto;
-  width: 82%;
+ /* Thêm CSS để định dạng layout */
+ .main {
   display: flex;
+  justify-content: space-between;
 }
 
-.row
-{
- /* display: flex;*/
-  width: 80%;
-}
-.main-content
-{
- /* float: left;*/
-  width: 92%;
+.left-section {
+  width: 70%;
 }
 
-.sidebar
-{
- /* float:right;*/
-  width: 40%;
+.right-section {
+  width: 30%;
 }
 
-.main-infor
-{
-  float:left;
-  width: 100%;
-}
-.main-infor .pull-left
-{
-  background-color: #ecf0f1;
-  float:left;
-  width: 71%;
-}
-
-.pull-right
-{
-  float: right;
-  width: 29%;
-  max-height: 180px;
-  height: 180px;
-  background-color: antiquewhite;
-  box-shadow: 0 2px rgba(70,80,110,.3);
-}
-
-
-
-.main-infor .address
-{
-  border-bottom: 1px solid tan;
-  border-top: 1px solid #ecf0f1;
-}
-
-.main-infor .infor-label
-{
-  width: 82px;
-  display: inline-table;
-  height: 13px;
-  background-color: #ecf0f1;
-  padding: 6px 12px;
-  text-align: left;
-  font-weight: 600;
-}
-
-.infor-data
-{
-  text-decoration: none;
-  font-weight: 400;
-  margin-left: 43px;
-}
-
-.main-infor .size
-{
-  border-bottom: 1px solid tan;
-}
-
-.main-infor .floor
-{
-  border-bottom: 1px solid tan;
-}
-
-.main-infor .bedroom
-{
-  border-top: 1px solid tan;
-}
-
-/*----------images------*/
-
-/* Slideshow container */
-.slideshow-container {
-
-  margin-left: -5px;
-  margin-right: -5px;
- padding-top: 34px;
-  display: grid;
-  width: 100%;
- 
-}
-
-.mySlides img
-{
-  height: 415px;
-}
-
-/* các dấu chấm */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-/* Hình ảnh mờ dần */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-/*------sidebar---------*/
-.sidebar
-{
-  margin-top: 94px;
-  text-align: justify;
-  display: right;
-  height: 432px;
-  width: 20%;
-  float:right;
-}
-
-.shop-infor
-{
-  display: right;
-  max-height: 600px;
-  width: 100%;
-  background-color: rgb(199, 227, 251);
-  float:right;
-}
-
-.shop-phone
-{
-  margin-top: 40px;
-  display: right;
-  max-height: 500px;
-  width: 100%;
-  background-color: rgb(199, 227, 251);;
-  float:right;
-}
-
-
-.logo-img-sidebar
-{
-  height: 61px;
-  width: 148px;
-}
-
-div .sidebar-img img
-{
-  padding-top: 40px;
-  width: 100%;
-  height: 300px;
+.right-section img {
+  max-width: 100%;
+  height: auto;
 }

@@ -44,8 +44,9 @@ if (isset($_POST['submit'])) {
     $tenloaihinhchothue = $row_loaihinhchothue['tendanhmuc'];
 
     // Tiếp tục với phần còn lại của mã của bạn, sử dụng $tenloaihinhchothue trong câu lệnh insert
-    $caulenh = "INSERT INTO phongtro (TieuDe, LoaiHinhChoThue, HinhAnh, DiaChiCuThe, Phuong, Gia, DienTich, SoPhong, Mota, Id_DanhMuc, Id_User, status)
-                VALUES ('$tieude', '$tenloaihinhchothue', '$hinhanhsource', '$diachicuthe', '$phuong', '$gia', '$dientich', '$sophong', '$mota', '$id_loaihinhchothue', '" . $_SESSION['id'] . "', '$trangthai')";
+    $thoigiandang = date('Y-m-d H:i:s'); // Lấy thời gian hiện tại
+    $caulenh = "INSERT INTO phongtro (TieuDe, LoaiHinhChoThue, HinhAnh, DiaChiCuThe, Phuong, Gia, DienTich, SoPhong, Mota, Id_DanhMuc, Id_User, status, ThoiGianDang)
+            VALUES ('$tieude', '$tenloaihinhchothue', '$hinhanhsource', '$diachicuthe', '$phuong', '$gia', '$dientich', '$sophong', '$mota', '$id_loaihinhchothue', '" . $_SESSION['id'] . "', '$trangthai', '$thoigiandang')";
 
     $result = mysqli_query($kn, $caulenh);
 

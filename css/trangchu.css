@@ -203,8 +203,15 @@ ul {
 }
 
 .title-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.title-content a{
+    text-decoration: none;
+    color: #1266dd;
 }
 
 .text-block {
@@ -398,50 +405,70 @@ footer {
     margin: 10px 0;
     display: flex;
     justify-content: space-between;
+    align-items: center; /* Đảm bảo căn giữa nội dung theo chiều dọc */
 }
-.tongquat:hover{
+
+.tongquat:hover {
     background-color: #8f8f96e7;
     border-radius: 5px;
 }
-.tongquat a{
+
+.tongquat a {
     color: black;
     text-decoration: none;
 }
+
 .tongquat img {
-    border-radius: 10px; 
-    overflow: hidden; /* Đảm bảo ảnh được bo góc */
-  }
-.container h1{
-    text-align: center !important;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ width của container */
+    height: auto; /* Đảm bảo tỷ lệ khung hình ảnh được bảo toàn */
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Hiển thị các cột theo chiều dọc */
 }
 
 .noidung {
     display: flex;
-    align-items:center;
+    align-items: center;
 }
-.left{
+
+.left {
     flex: 1;
     margin-right: 10px;
 }
-.left img{
+
+.left img {
     width: 100%;
     height: auto;
+    border-radius: 10px;
+    overflow: hidden;
 }
-.right{
-    flex: 2;
 
+.right {
+    flex: 2;
 }
-.container {
-    display: flex;
-}
+
 .column {
-    flex: 1; /* Đặt độ rộng của cột */
-    padding: 20px; /* Khoảng cách giữa cột và nội dung */
-    border: 1px solid #ccc; 
-    margin: 10px; /* Khoảng cách giữa các cột */
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 10px;
     border-radius: 5px;
 }
+
 h1 {
-    font-size: 24px; 
-    color: #333; 
+    font-size: 24px;
+    color: #333;
+}
+
+.timeup {
+    color: #1266dd;
+}
+
+/* Optional: Nếu muốn các cột có chiều cao bằng nhau, bạn có thể sử dụng height: 100%; trên .container */
+.container {
+    height: 100%;
 }

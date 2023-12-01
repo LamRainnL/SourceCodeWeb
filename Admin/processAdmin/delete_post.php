@@ -13,7 +13,6 @@ if(isset($_POST['submit'])){
 
     if($result){
         echo "<script> 
-                alert('Đã xóa bài.'); 
                 window.location.href = '/Admin/baidang.php';
               </script>";
     } else {
