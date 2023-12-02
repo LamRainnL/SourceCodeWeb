@@ -1,42 +1,47 @@
 body {
-    font-family: 'Quicksand', sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 900px;
+  font-family: "Quicksand", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 800px;
 }
-#main{
-    background: linear-gradient(to bottom, #fefcfc 30%, #192442 70%); /* Sử dụng linear-gradient để tạo nền chia đôi */
-    height: 100%;
+#main {
+  background: linear-gradient(
+    to bottom,
+    #fefcfc 30%,
+    #192442 60%
+  ); /* Sử dụng linear-gradient để tạo nền chia đôi */
+  height: 100%;
 }
 .tongquat {
-    text-align: center;
-    margin: auto;
-    max-width: 700px;
-    height: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #f0f0f0;
-    border-radius: 5px;
+  text-align: center;
+  margin: auto;
+  max-width: 700px;
+  height: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  overflow-y: auto;
 }
 
 .top {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
-.mid{
-    margin: auto;
-    max-width:600px;
+.mid {
+  margin: auto;
+  max-width: 600px;
 }
 
 form {
-    text-align: left;
+  text-align: left;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 /* Đặt kích thước chung cho các phần tử trong form */
@@ -44,56 +49,55 @@ label {
 .form-group input[type="number"],
 .form-group textarea,
 .form-group input[type="file"] {
-    width: 100%; /* Đặt chiều rộng 100% */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  width: 100%; /* Đặt chiều rộng 100% */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
-.form-group select{
-    width: 623px; /* Đặt chiều rộng 100% */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.form-group select {
+  width: 623px; /* Đặt chiều rộng 100% */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 input[type="file"] {
-    width: 100%;
-    margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 input[type="submit"] {
-    background-color: #337ab7;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  background-color: #337ab7;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 input[type="submit"]:hover {
-    background-color: #235a9d;
+  background-color: #235a9d;
 }
 .image-preview {
-   
-    border: 1px solid #ccc; /* Thêm đường viền cho phần xem trước */
-    padding: 10px;
+  border: 1px solid #ccc; /* Thêm đường viền cho phần xem trước */
+  padding: 10px;
 }
 
 #image-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px; /* Khoảng cách giữa các hình ảnh */
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px; /* Khoảng cách giữa các hình ảnh */
 }
 
 #image-list li {
-    width: 150px; /* Độ rộng của mỗi hình ảnh */
+  width: 150px; /* Độ rộng của mỗi hình ảnh */
 }
 
 .preview-image {
-    max-width: 100%; /* Đảm bảo hình ảnh không bị vượt quá phần tử cha */
-    max-height: 100%; /* Đảm bảo hình ảnh không bị vượt quá phần tử cha */
+  max-width: 100%; /* Đảm bảo hình ảnh không bị vượt quá phần tử cha */
+  max-height: 100%; /* Đảm bảo hình ảnh không bị vượt quá phần tử cha */
 }
