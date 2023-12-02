@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 28, 2023 at 06:21 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Máy chủ: 127.0.0.1:3306
+-- Thời gian đã tạo: Th12 02, 2023 lúc 03:39 AM
+-- Phiên bản máy phục vụ: 10.4.10-MariaDB
+-- Phiên bản PHP: 7.3.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,23 +19,25 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `webtimtro`
+-- Cơ sở dữ liệu: `webtimtro`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admins`
+-- Cấu trúc bảng cho bảng `admins`
 --
 
-CREATE TABLE `admins` (
-  `Id` int(11) NOT NULL,
-  `TenDangNhap` text DEFAULT NULL,
-  `MatKhau` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+DROP TABLE IF EXISTS `admins`;
+CREATE TABLE IF NOT EXISTS `admins` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `TenDangNhap` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `MatKhau` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `admins`
+-- Đang đổ dữ liệu cho bảng `admins`
 --
 
 INSERT INTO `admins` (`Id`, `TenDangNhap`, `MatKhau`) VALUES
@@ -44,185 +47,135 @@ INSERT INTO `admins` (`Id`, `TenDangNhap`, `MatKhau`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `danhmuc`
+-- Cấu trúc bảng cho bảng `danhmuc`
 --
 
-CREATE TABLE `danhmuc` (
-  `Id_DanhMuc` int(11) NOT NULL,
-  `TenDanhMuc` text DEFAULT NULL,
-  `MoTa` text DEFAULT NULL,
-  `TrangThai` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `NgayTao` datetime DEFAULT NULL,
-  `NgayCapNhat` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+DROP TABLE IF EXISTS `danhmuc`;
+CREATE TABLE IF NOT EXISTS `danhmuc` (
+  `Id_DanhMuc` int(11) NOT NULL AUTO_INCREMENT,
+  `TenDanhMuc` varchar(100) COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `MoTa` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  PRIMARY KEY (`Id_DanhMuc`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `danhmuc`
+-- Đang đổ dữ liệu cho bảng `danhmuc`
 --
 
-INSERT INTO `danhmuc` (`Id_DanhMuc`, `TenDanhMuc`, `MoTa`, `TrangThai`, `NgayTao`, `NgayCapNhat`) VALUES
-(1, 'DanhMuc1', 'Nhà Trọ', 'Hoạt động', '2023-10-25 22:57:34', '2023-10-25 22:57:34'),
-(2, 'DanhMuc2', 'Sleepbox', 'Ngừng hoạt động', '2023-10-25 22:57:34', '2023-10-25 22:57:34');
+INSERT INTO `danhmuc` (`Id_DanhMuc`, `TenDanhMuc`, `MoTa`) VALUES
+(3, 'Phòng trọ', 'Phòng trọ'),
+(4, 'Nhà nguyên căn', 'nhà ở dành cho hộ gia đình hoặc từ 5 đến 6 người'),
+(5, 'Căn hộ', 'nhà cao cấp dành cho hộ gia đình'),
+(6, 'Sleep box', 'Phòng cho thuê ngắn hạn');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phongtro`
+-- Cấu trúc bảng cho bảng `phongtro`
 --
 
-CREATE TABLE `phongtro` (
-  `Id_PhongTro` int(11) NOT NULL,
-  `TieuDe` text DEFAULT NULL,
-  `LoaiHinhChoThue` text DEFAULT NULL,
-  `HinhAnh` text DEFAULT NULL,
-  `DiaChiCuThe` text DEFAULT NULL,
-  `Phuong` text DEFAULT NULL,
-  `Gia` decimal(10,2) DEFAULT NULL,
+DROP TABLE IF EXISTS `phongtro`;
+CREATE TABLE IF NOT EXISTS `phongtro` (
+  `Id_PhongTro` int(11) NOT NULL AUTO_INCREMENT,
+  `TieuDe` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `LoaiHinhChoThue` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `HinhAnh` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `DiaChiCuThe` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `Phuong` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `Gia` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `DienTich` int(11) DEFAULT NULL,
   `SoPhong` int(11) DEFAULT NULL,
-  `MoTa` text DEFAULT NULL,
+  `MoTa` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `Id_DanhMuc` int(11) DEFAULT NULL,
   `Id_User` int(11) DEFAULT NULL,
-  `status` enum('pending','approved','rejected') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+  `status` enum('pending','approved','rejected') COLLATE utf8_vietnamese_ci NOT NULL,
+  `full_text_search_column` text GENERATED ALWAYS AS (concat_ws(' ',`TieuDe`,`Phuong`,`Gia`,`SoPhong`,`DienTich`,`MoTa`)) STORED,
+  `ThoiGianDang` datetime DEFAULT NULL,
+  PRIMARY KEY (`Id_PhongTro`),
+  KEY `Id_DanhMuc` (`Id_DanhMuc`),
+  KEY `Id_User` (`Id_User`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `phongtro`
+-- Đang đổ dữ liệu cho bảng `phongtro`
 --
 
-INSERT INTO `phongtro` (`Id_PhongTro`, `TieuDe`, `LoaiHinhChoThue`, `HinhAnh`, `DiaChiCuThe`, `Phuong`, `Gia`, `DienTich`, `SoPhong`, `MoTa`, `Id_DanhMuc`, `Id_User`, `status`) VALUES
-(1, 'Cho Thuê', 'Phòng Trọ', 'image1.jpg', '18 a, Nguyễn Nhạc', 'Phường Ngô Mây', 1000.50, 50, 2, 'Mô tả phòng trọ 1', 1, 1, 'pending'),
-(2, 'Cho Thuê', 'Sleepbox', 'image2.jpg', '22 Nguyễn Huệ', 'Phường Quang Trung', 1500.75, 60, 3, 'Mô tả phòng trọ 2', 2, 2, 'approved');
+INSERT INTO `phongtro` (`Id_PhongTro`, `TieuDe`, `LoaiHinhChoThue`, `HinhAnh`, `DiaChiCuThe`, `Phuong`, `Gia`, `DienTich`, `SoPhong`, `MoTa`, `Id_DanhMuc`, `Id_User`, `status`, `ThoiGianDang`) VALUES
+(23, 'Cho thuê trọ tại Nguyễn Thị Minh Khai', 'Phòng trọ', 'upimg/1701405418_anhphongtro.jpg', '31 Nguyễn Thị Minh Khai', 'Nguyễn Văn Cừ', '200000.00', 100, 1, 'Gần trường', 3, 9, 'approved', '2023-12-01 05:36:58'),
+(24, 'Cho thuê nhà tại Quang Trung', 'Nhà nguyên căn', 'upimg/1701406497_anhphongtro.jpg', '231/73 Tây sơn', 'Quang Trung', '2 triệu', 100, 1, 'Nhà 2 phòng ngủ, 1 nhà bếp', 4, 9, 'approved', '2023-12-01 05:54:57'),
+(25, 'Cho thuê trọ tại Nguyễn Thị Minh Khai', 'Nhà nguyên căn', 'upimg/1701411989_anhphongtro.jpg', '31 Nguyễn Thị Minh Khai, Nguyễn Văn Cừ, Quy Nhơn, Bình Định', 'Nguyễn Văn Cừ', '2 triệu', 100, 1, 'gần', 4, 9, 'approved', '2023-12-01 07:26:29');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `timtro`
+-- Cấu trúc bảng cho bảng `timtro`
 --
 
-CREATE TABLE `timtro` (
-  `Id_TimTro` int(11) NOT NULL,
-  `TenBaiViet` text DEFAULT NULL,
-  `NoiDung` text DEFAULT NULL,
+DROP TABLE IF EXISTS `timtro`;
+CREATE TABLE IF NOT EXISTS `timtro` (
+  `Id_TimTro` int(11) NOT NULL AUTO_INCREMENT,
+  `TenBaiViet` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `NoiDung` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `Id_User` int(11) DEFAULT NULL,
-  `status` enum('pending','approved','rejected') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+  `status` enum('pending','approved','rejected') COLLATE utf8_vietnamese_ci NOT NULL,
+  `ThoiGianDang` datetime DEFAULT NULL,
+  PRIMARY KEY (`Id_TimTro`),
+  KEY `Id_User` (`Id_User`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `timtro`
+-- Đang đổ dữ liệu cho bảng `timtro`
 --
 
-INSERT INTO `timtro` (`Id_TimTro`, `TenBaiViet`, `NoiDung`, `Id_User`, `status`) VALUES
-(1, 'Bài viết 1', 'Nội dung bài viết 1', 1, 'pending'),
-(2, 'Bài viết 2', 'Nội dung bài viết 2', 2, 'rejected');
+INSERT INTO `timtro` (`Id_TimTro`, `TenBaiViet`, `NoiDung`, `Id_User`, `status`, `ThoiGianDang`) VALUES
+(9, 'Tìm trọ Nguyễn Thái Học', 'Trọ cho 2 người ở', 9, 'approved', '2023-12-01 05:40:25');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
-CREATE TABLE `users` (
-  `Id_User` int(11) NOT NULL,
-  `Ho` text DEFAULT NULL,
-  `Ten` text NOT NULL,
-  `Email` text DEFAULT NULL,
-  `Sdt` text DEFAULT NULL,
-  `MatKhau` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `Id_User` int(11) NOT NULL AUTO_INCREMENT,
+  `Ho` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `Ten` text COLLATE utf8_vietnamese_ci NOT NULL,
+  `Email` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `Sdt` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `MatKhau` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  PRIMARY KEY (`Id_User`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`Id_User`, `Ho`, `Ten`, `Email`, `Sdt`, `MatKhau`) VALUES
-(1, 'Nguyễn', 'Hương', 'huong@gmail.com', '1234567891', '123'),
-(2, 'Trần', 'Hà', 'ha@gmail.com', '1234567892', '123');
+(9, 'Nguyễn Bá', 'Lâm', 'nguyenbalam208@gmail.com', '0352282425', '1');
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `admins`
---
-ALTER TABLE `admins`
-  ADD PRIMARY KEY (`Id`);
-
---
--- Indexes for table `danhmuc`
---
-ALTER TABLE `danhmuc`
-  ADD PRIMARY KEY (`Id_DanhMuc`);
-
---
--- Indexes for table `phongtro`
---
-ALTER TABLE `phongtro`
-  ADD PRIMARY KEY (`Id_PhongTro`),
-  ADD KEY `Id_DanhMuc` (`Id_DanhMuc`),
-  ADD KEY `Id_User` (`Id_User`);
-
---
--- Indexes for table `timtro`
---
-ALTER TABLE `timtro`
-  ADD PRIMARY KEY (`Id_TimTro`),
-  ADD KEY `Id_User` (`Id_User`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`Id_User`);
-
---
--- AUTO_INCREMENT for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `admins`
+-- Chỉ mục cho bảng `phongtro`
 --
-ALTER TABLE `admins`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `phongtro` ADD FULLTEXT KEY `idx_full_text_search` (`full_text_search_column`);
 
 --
--- AUTO_INCREMENT for table `danhmuc`
---
-ALTER TABLE `danhmuc`
-  MODIFY `Id_DanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `phongtro`
---
-ALTER TABLE `phongtro`
-  MODIFY `Id_PhongTro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `timtro`
---
-ALTER TABLE `timtro`
-  MODIFY `Id_TimTro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `Id_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `phongtro`
+-- Các ràng buộc cho bảng `phongtro`
 --
 ALTER TABLE `phongtro`
   ADD CONSTRAINT `phongtro_ibfk_1` FOREIGN KEY (`Id_DanhMuc`) REFERENCES `danhmuc` (`Id_DanhMuc`),
   ADD CONSTRAINT `phongtro_ibfk_2` FOREIGN KEY (`Id_User`) REFERENCES `users` (`Id_User`);
 
 --
--- Constraints for table `timtro`
+-- Các ràng buộc cho bảng `timtro`
 --
 ALTER TABLE `timtro`
   ADD CONSTRAINT `timtro_ibfk_1` FOREIGN KEY (`Id_User`) REFERENCES `users` (`Id_User`);
