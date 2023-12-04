@@ -13,17 +13,103 @@ body {
  .main {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 100px;
+  margin-top: 30px;
 }
 
 .left-section {
-  width: 70%;
+  width: 68%;
+  padding-left: 10px;
 }
 
 .right-section {
-  width: 30%;
+  width: 28%;
+}
+.picture img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+.picture,
+.room-info,
+.map-container {
+  margin-bottom: 20px;
+}
+.room-info table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.room-info {
+  padding: 20px; /* Khoảng cách nội dung trong room-info */
 }
 
-.right-section img {
-  max-width: 100%;
-  height: auto;
+.room-info h2 {
+  font-size: 1.5em; /* Kích thước của tiêu đề */
+}
+
+.room-info table, .room-info ul {
+  list-style: none; /* Ẩn dấu chấm ở đầu mỗi dòng */
+  padding: 0; /* Loại bỏ padding mặc định của table và ul */
+}
+
+.room-info table td, .room-info ul li {
+  padding: 5px 0; /* Khoảng cách giữa các dòng */
+}
+.thongtinlienhe {
+  padding: 20px; /* Khoảng cách nội dung trong right-section */
+}
+
+.thongtinlienhe hr {
+  margin: 10px 0; /* Khoảng cách giữa đường kẻ và nội dung xung quanh */
+}
+
+.thongtinlienhe .hoten, .thongtinlienhe .sdt {
+  margin-bottom: 10px; /* Khoảng cách giữa hoten và sdt */
+}
+
+.thongtinlienhe, .danhsach{
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  height: fit-content;
+  max-height: 100%; 
+}
+.thongtinlienhe a, .danhsach a{
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+.thongtinlienhe, .danhsach {
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  padding: 20px; 
+  border: 1px solid #e0e0e0; /* Viền xung quanh phần thông tin liên hệ */
+  border-radius: 10px; /* Bo góc của phần thông tin liên hệ */
+  justify-content: center; 
+}
+.danhsach{
+  margin-top: 30px;
+}
+.thongtinlienhe div {
+  margin-bottom: 10px;
+}
+
+.thongtinlienhe p, .thongtinlienhe a {
+  color: black;
+
+}
+.thongtinlienhe a:hover, .danhsach a:hover {
+  color:#ecb207;
+}
+/* Biểu tượng điện thoại */
+.fa-phone {
+  margin-right: 5px;
+}
+.hoten{
+  display: flex;
+}
+.sdt{
+  border-radius: 5px;
 }

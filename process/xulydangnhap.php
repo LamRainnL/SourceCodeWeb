@@ -10,7 +10,6 @@ if (isset($_POST['submit'])) {
 	mysqli_set_charset($kn, "utf8mb4");
 	//Xây dựng câu lệnh truy vấn
 	$caulenh = "select * from users where Sdt='" . $sdt . "'";
-	$admin = "select * from admins where TenDangNhap='" . $sdt . "'";
 	$result = mysqli_query($kn, $caulenh);
 	// $result1 = mysqli_query($kn, $admin);
 	$row = mysqli_fetch_array($result);

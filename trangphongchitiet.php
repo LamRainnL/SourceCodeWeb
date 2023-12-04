@@ -17,51 +17,95 @@
 
     $id = $_GET['id'];
     $sql = "SELECT * FROM phongtro WHERE Id_PhongTro=$id";
-    $sql_user = "SELECT * FROM users WHERE Id_Users='" . $_SESSION['id'] . "'";
     $result = mysqli_query($kn, $sql);
+    $sql_user = "SELECT * FROM users WHERE Id_User='" . $_SESSION['id'] . "'";
     $result_user = mysqli_query($kn, $sql_user);
 
-    if (mysqli_num_rows($result)) {
+    echo "<div class='main'>";
+    if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
+        $phuong = $row['Phuong'];
 
-        echo "<div class='main'>
-            <!-- Phần bên trái -->
-            <div class='left-section'>
-                <div class='picture'>
-                    <img src='/process/{$row['HinhAnh']}' alt='Hình ảnh phòng trọ'>
-                </div>
-                <div class='room-info'>
-                    <h2>Thông tin chính</h2>
-                    <p>Diện tích: {$row['DienTich']}<sup>2</sup></p>
-                    <p>Số phòng: {$row['SoPhong']} phòng</p>
-                    <p>Giá thuê: {$row['Gia']} VNĐ/tháng</p>
-                </div>
-                <!-- Bản đồ -->
-                <div class='map-container'>
-                    <div id='map' style='height: 400px;'></div>
-                </div>
-                
+        // Câu lệnh truy vấn để lấy các phòng trọ cùng phường
+        $sql_cungphuong = "SELECT * FROM phongtro WHERE Phuong='$phuong' AND Id_PhongTro != $id";
+        $result_cungphuong = mysqli_query($kn, $sql_cungphuong);
+
+        // <!-- Phần bên trái -->
+        echo "<div class='left-section'>
+            <div class='picture'>
+                <img src='/process/{$row['HinhAnh']}' alt='Hình ảnh phòng trọ'>
+                <h1>{$row['TieuDe']}</h1>
+                <br>
             </div>
+            <div class='room-info'>
+                <h2>Thông tin chính</h2><br>
+                <table>
+                    <tr>
+                        <td><b>Loại hình</b>: {$row['LoaiHinhChoThue']}</td>
+                        <td><b>Diện tích</b>: {$row['DienTich']} m²</td>
+                        <td><b>Số phòng</b>: {$row['SoPhong']} phòng</td>
+                        <td><b>Giá thuê</b>: {$row['Gia']} VNĐ/tháng</td>
+                    </tr>
+                </table>
+                <hr>
+                <ul>
+                    <li><b>Phường</b>: {$row['Phuong']}</li>
+                    <li><b>Địa chỉ cụ thể</b>: {$row['DiaChiCuThe']}</li>
+                    <li><b>Mô tả thêm</b>: {$row['MoTa']}</li>
+                </ul>
+            </div>
+            <!-- Bản đồ -->
+            <div class='map-container'>
+                <div id='map' style='height: 0px;'></div>
+            </div>  
         </div>";
     }
-    if (mysqli_num_rows($result_user)) {
+    if ($result_user === false) {
+        die("Lỗi truy vấn: " . mysqli_error($kn));
+    }
+    if (mysqli_num_rows($result_user) > 0) {
         $row_user = mysqli_fetch_assoc($result_user);
         // <!-- Phần bên phải -->
-        echo " <div class='right-section'>
-            <!-- Thông tin liên hệ -->
-            <h3>Thông tin liên hệ</h3>
-            <p>Email: {$row_user['Email']}</p>
-            <p>Điện thoại: {$row_user['DienThoai']}</p>
-        </div>";
-    }
+        echo "<div class='right-section'>
+            <div class='info-container'>
+                <!-- Thông tin liên hệ -->
+                <div class='thongtinlienhe'>
+                    <div class='hoten'>
+                        <p>{$row_user['Ho']} {$row_user['Ten']}</p>
+                    </div>  
+                    <hr>
+                    <div class='sdt'>
+                        <i class='fa fa-phone' aria-hidden='true' class='icon'></i>
+                        <a href='tel:+{$row_user['Sdt']}'>{$row_user['Sdt']}</a>
+                    </div>
+                </div>";
 
+        if (mysqli_num_rows($result_cungphuong) > 0) {
+            echo "<div class='danhsach'>
+                <p>Danh sách phòng trọ cùng phường:</p><br><hr><br>";
+
+            while ($row_cungphuong = mysqli_fetch_assoc($result_cungphuong)) {
+                echo "<div class='phongcungphuong'>
+                    <h3><a href='/trangphongchitiet.php?id={$row_cungphuong['Id_PhongTro']}'>{$row_cungphuong['TieuDe']}</a></h3>
+                  </div>";
+            }
+            echo "</div>";
+        } else {
+            echo "<br><p>Không có phòng trọ nào cùng phường.</p>";
+        }
+
+        echo "</div>"; // Đóng div 'info-container'
+        echo "</div>"; // Đóng div 'right-section'
+    }
+    echo "</div>"; // Đóng div 'main'
     mysqli_close($kn);
     require 'layout/footer.php';
     ?>
-    <script>
+
+    <!-- <script>
         function initMap() {
             var geocoder = new google.maps.Geocoder();
-            var address = '<?php echo $row['DiaChiCuThe']; ?>';
+             var address = 'đại chỉ cụ thể';
 
             geocoder.geocode({
                 'address': address
@@ -83,9 +127,10 @@
             });
         }
         initMap();
-    </script>
+    </script> -->
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABlFsaRMal0ZDHQjg65jnUbqGS9gTTDTs&callback=initMap"></script> -->
+    <!-- Thêm vào cuối trang body hoặc trước thẻ </body> -->
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABlFsaRMal0ZDHQjg65jnUbqGS9gTTDTs&callback=initMap"></script>
 </body>
 
 </html>
