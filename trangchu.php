@@ -196,41 +196,43 @@
                 <?php
                 $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
                 mysqli_set_charset($kn, "utf8mb4");
-                $caulenh1 = "select * from phongtro where status='approved'";
+                $caulenh1 = "SELECT * from phongtro where status='approved' ORDER BY ThoiGianDang DESC";
                 $result1 = mysqli_query($kn, $caulenh1);
                 $hasresult = false;
                 echo "<div class='container'>
-                
                             <div class='column'>
                             <h1>Bài đăng cho thuê trọ</h1>
                             <hr>";
+                if ($result1) {
+                    while ($row = mysqli_fetch_array($result1)) {
+                        $hasresult = true;
 
-                while ($row = mysqli_fetch_array($result1)) {
-                    $hasresult = true;
+                        $id_pt = $row["Id_PhongTro"];
+                        echo "<div class='tongquat'>
+                                <a href='trangphongchitiet.php?id=$id_pt'>
+                                    <div class='noidung'>
+                                        <div class='left'>
+                                            <img src='/process/" . $row["HinhAnh"] . "' alt='hinhanh'/>
+                                        </div>
+                                        <div class='right'>
+                                            <h2>" . $row["TieuDe"] . "</h2>
+                                            <p>Phường: " . $row["Phuong"] . "</p>
+                                            <p>Giá thuê: " . $row["Gia"] . " VNĐ</p>
+                                            <p>Số phòng: " . $row["SoPhong"] . "</p>
+                                            <p>Diện tích: " . $row["DienTich"] . " m²</p>
+                                            <p class='timeup'>Đã đăng: " . $row["ThoiGianDang"] . "</p>
+                                        </div>
+                                    </div>
+                                </a>       
+                            </div><hr>";
+                    }
+                    if (!$hasresult) {
+                        echo '<p>Chưa có bài đăng mới!</p>';
+                    }
+                } else {
+                    echo "Lỗi truy vấn!" . mysqli_error($kn);
+                }
 
-                    $id_pt = $row["Id_PhongTro"];
-                    echo "<div class='tongquat'>
-                <a href='trangphongchitiet.php?id=$id_pt'>
-                <div class='noidung'>
-                    <div class='left'>
-                        <img src='/process/" . $row["HinhAnh"] . "' alt='hinhanh'/>
-                    </div>
-                    <div class='right'>
-                        <h2>" . $row["TieuDe"] . "</h2>
-                        <p>Phường: " . $row["Phuong"] . "</p>
-                        <p>Giá thuê: " . $row["Gia"] . " VNĐ</p>
-                        <p>Số phòng: " . $row["SoPhong"] . "</p>
-                        <p>Diện tích: " . $row["DienTich"] . " m²</p>
-                        <p class='timeup'>Đã đăng: " . $row["ThoiGianDang"] . "</p>
-                    </div>
-                </div>
-                </a>       
-            </div>                <hr>
-            ";
-                }
-                if (!$hasresult) {
-                    echo '<p>Chưa có bài đăng mới!</p>';
-                }
                 echo '</div>
                     </div>';
                 mysqli_close($kn);

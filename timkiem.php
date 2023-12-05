@@ -41,16 +41,14 @@
                 echo "<div class='tongquat'>
                     <a href='trangphongchitiet.php?id=$id_pt'>
                         <div class='noidung'>
-                            <div class='left'>
+                            <div class='top'>
                                 <img src='/process/" . $row["HinhAnh"] . "' alt='hinhanh'/>
                             </div>
-                            <div class='right'>
-                                <h2>" . $row["TieuDe"] . "</h2>
-                                <p>Phường: " . $row["Phuong"] . "</p>
-                                <p>Giá thuê: " . $row["Gia"] . " VNĐ</p>
+                            <div class='bottom'>
+                                <h4>" . $row["MoTa"] . " phường ". $row["Phuong"] ."</h4>
                                 <p>Số phòng: " . $row["SoPhong"] . "</p>
                                 <p>Diện tích: " . $row["DienTich"] . " m²</p>
-                                <p>Thông tin thêm: " . $row["MoTa"] . "</p>
+                                <p style='color:#4a67b7; font-weight: 700; font-size: 18px'>" . $row["Gia"] . " VNĐ</p>
                             </div>
                         </div>
                     </a>       

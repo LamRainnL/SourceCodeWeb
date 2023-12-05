@@ -20,36 +20,40 @@
     $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
     mysqli_set_charset($kn, "utf8");
     mysqli_set_charset($kn, "utf8mb4");
-    $caulenh = "select * from timtro where status='approved'";
+    $caulenh = "SELECT * from timtro where status='approved' ORDER BY ThoiGianDang DESC";
     $result = mysqli_query($kn, $caulenh);
-    $caulenh1 = "select * from phongtro where status='approved'";
+    $caulenh1 = "SELECT * from phongtro where status='approved' ORDER BY ThoiGianDang DESC";
     $result1 = mysqli_query($kn, $caulenh1);
     echo "<div class='container'>
         <div class='column'>
-<h1>Danh sách bài đăng tìm trọ</h1>";
-
-    while ($row = mysqli_fetch_array($result)) {
-        echo "<div class='tongquat'>
-    <div>
-        <h2>" . $row["TenBaiViet"] . "</h2></br>
-        <p>" . $row["NoiDung"] . "</p>
-    </div>
-    <div class='xuly'>
-        <form method='POST' action='/Admin/processAdmin/delete_post.php'>
-            <input type='hidden' name='post_id' value='" . $row["Id_TimTro"] . "'>
-            <button type='submit' name='submit' class='delete-button'>
-                <i class='fas fa-trash'></i> Xóa
-            </button>
-        </form>
-    </div>
-</div>";
+        <h1>Danh sách bài đăng tìm trọ</h1>";
+    if ($result) {
+        while ($row = mysqli_fetch_array($result)) {
+            echo "<div class='tongquat'>
+        <div>
+            <h2>" . $row["TenBaiViet"] . "</h2></br>
+            <p>" . $row["NoiDung"] . "</p>
+        </div>
+        <div class='xuly'>
+            <form method='POST' action='/Admin/processAdmin/delete_post.php'>
+                <input type='hidden' name='post_id' value='" . $row["Id_TimTro"] . "'>
+                <button type='submit' name='submit' class='delete-button'>
+                    <i class='fas fa-trash'></i> Xóa
+                </button>
+            </form>
+        </div>
+        </div>";
+        }
+    } else {
+        echo "Lỗi truy vấn: " . mysqli_error($kn);
     }
+
     echo ' </div>';
     echo "<div class='column'>
     <h1>Danh sách bài đăng cho thuê trọ</h1>";
-
-    while ($row = mysqli_fetch_array($result1)) {
-        echo "<div class='tongquat'>
+    if ($result1) {
+        while ($row = mysqli_fetch_array($result1)) {
+            echo "<div class='tongquat'>
         <div class='noidung'>
         <div class='left'>
             <img src='/process/" . $row["HinhAnh"] . "' alt='hinhanh'/>
@@ -71,7 +75,11 @@
         </form>
     </div>
 </div>";
+        }
+    }else {
+        echo "Lỗi truy vấn: " . mysqli_error($kn);
     }
+
     echo '</div>
         </div>';
     mysqli_close($kn);

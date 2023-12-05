@@ -196,29 +196,35 @@
                 <?php
                 $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
                 mysqli_set_charset($kn, "utf8mb4");
-                $caulenh = "select * from timtro where status='approved'";
+                $caulenh = "SELECT * from timtro where status='approved' ORDER BY ThoiGianDang DESC";
                 $result = mysqli_query($kn, $caulenh);
-                $hasresult= false;
+                $hasresult = false;
                 echo "<div class='container'>
                     <div class='column'>
                         <h1>Bài đăng tìm trọ</h1>
                         <hr>";
-                while ($row = mysqli_fetch_array($result)) {
-                    $hasresult= true;
-                    $id = $row["Id_TimTro"];
-                    echo "<div class='tongquat'>
-                <a href='trangphongchitiet.php?id=$id'>
-                <div class='noidungtimtro'>
-                    <h2>" . $row["TenBaiViet"] . "</h2>
-                    <p>" . $row["NoiDung"] . "</p>
-                    <p class='timeup'>Đã đăng: " . $row["ThoiGianDang"] . "</p>
+                if ($result) {
+                    while ($row = mysqli_fetch_array($result)) {
+                        $hasresult = true;
+                        $id = $row["Id_TimTro"];
+                        echo "<div class='tongquat'>
+                    <a href='trangphongchitiet.php?id=$id'>
+                    <div class='noidungtimtro'>
+                        <h2>" . $row["TenBaiViet"] . "</h2>
+                        <p>" . $row["NoiDung"] . "</p>
+                        <p class='timeup'>Đã đăng: " . $row["ThoiGianDang"] . "</p>
+    
+                    </div></a>   
+                </div>";
+                    }
+                    if (!$hasresult) {
+                        echo '<p>Chưa có bài đăng mới!</p>';
+                    }
+                }else{
+                    echo "Lỗi truy vấn!". mysqli_error($kn);
+                }
 
-                </div></a>   
-            </div>";
-                }
-                if(!$hasresult){
-                    echo'<p>Chưa có bài đăng mới!</p>';
-                }
+
                 echo ' </div>';
 
                 echo '</div>

@@ -42,8 +42,7 @@ if (isset($_POST['submit'])) {
   if ($result_loaihinhchothue) {
     $row_loaihinhchothue = mysqli_fetch_assoc($result_loaihinhchothue);
     $tenloaihinhchothue = $row_loaihinhchothue['tendanhmuc'];
-
-    // Tiếp tục với phần còn lại của mã của bạn, sử dụng $tenloaihinhchothue trong câu lệnh insert
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
     $thoigiandang = date('Y-m-d H:i:s'); // Lấy thời gian hiện tại
     $caulenh = "INSERT INTO phongtro (TieuDe, LoaiHinhChoThue, HinhAnh, DiaChiCuThe, Phuong, Gia, DienTich, SoPhong, Mota, Id_DanhMuc, Id_User, status, ThoiGianDang)
             VALUES ('$tieude', '$tenloaihinhchothue', '$hinhanhsource', '$diachicuthe', '$phuong', '$gia', '$dientich', '$sophong', '$mota', '$id_loaihinhchothue', '" . $_SESSION['id'] . "', '$trangthai', '$thoigiandang')";
