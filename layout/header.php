@@ -12,6 +12,8 @@ session_start();
     <script src="/js/header.js"></script>
 </head>
 <!-- HEADER TOP : START -->
+<body>
+    
 <div id="header">
     <div class="header-top">
         <div class="information">
@@ -60,7 +62,7 @@ session_start();
                     <i class="fa fa-user" aria-hidden="true"></i><a href="Signup.php"> Đăng ký</a>
                 </li>
                 <li>
-                    <i class="fa fa-sign-in" aria-hidden="true"><a href="Login.php"> Đăng nhập</a></i>
+                    <i class="fa fa-sign-in" aria-hidden="true"></i><a href="Login.php"> Đăng nhập</a>
                 </li>
             </ul>
         </div>
@@ -117,3 +119,4 @@ session_start();
         </div>
     </div>
 </div>
+</body>

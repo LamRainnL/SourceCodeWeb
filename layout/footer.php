@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <!-- FOOTER : START -->
+<body>
+    
 <footer>
     <div class="footer-first-content">
         <div class="logo">
@@ -47,3 +49,4 @@
     </div>
 </footer>
 <!-- FOOTER : END -->
+</body>

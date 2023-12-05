@@ -210,12 +210,12 @@
                         echo "<div class='tongquat'>
                     <a href='trangphongchitiet.php?id=$id'>
                     <div class='noidungtimtro'>
-                        <h2>" . $row["TenBaiViet"] . "</h2>
+                        <h3>" . $row["TenBaiViet"] . "</h3>
                         <p>" . $row["NoiDung"] . "</p>
                         <p class='timeup'>Đã đăng: " . $row["ThoiGianDang"] . "</p>
     
                     </div></a>   
-                </div>";
+                </div><hr>";
                     }
                     if (!$hasresult) {
                         echo '<p>Chưa có bài đăng mới!</p>';
