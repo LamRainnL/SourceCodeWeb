@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/trangphongchitiet.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết phòng</title>
 </head>
@@ -39,12 +41,19 @@
             </div>
             <div class='room-info'>
                 <h2>Thông tin chính</h2><br>
+                <hr>
                 <table>
                     <tr>
-                        <td><b>Loại hình</b>: {$row['LoaiHinhChoThue']}</td>
-                        <td><b>Diện tích</b>: {$row['DienTich']} m²</td>
-                        <td><b>Số phòng</b>: {$row['SoPhong']} phòng</td>
-                        <td><b>Giá thuê</b>: {$row['Gia']} VNĐ/tháng</td>
+                        <td><b>Loại hình</b></td>
+                        <td><b>Diện tích</b></td>
+                        <td><b>Số phòng</b></td>
+                        <td><b>Giá thuê</b></td>
+                    </tr>
+                    <tr>
+                        <td>{$row['LoaiHinhChoThue']}</td>
+                        <td>{$row['DienTich']} m²</td>
+                        <td>{$row['SoPhong']} phòng</td>
+                        <td>{$row['Gia']} VNĐ/tháng</td>
                     </tr>
                 </table>
                 <hr>
