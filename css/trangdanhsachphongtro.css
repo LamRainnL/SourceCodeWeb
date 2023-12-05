@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
   outline: 0;
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Quicksand", sans-serif;
   margin: 0;
 }
 
@@ -14,33 +14,43 @@ body {
   border: 1px none #b2b0b0;
   padding: 10px;
   margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
-.thanhphan{
+.thanhphan {
   width: 100%;
 }
-.tongquat a{
+.tongquat {
+  border: solid #ecb207;
+  border-radius: 10px;
+  margin: 10px;
+}
+.tongquat a {
   color: black;
   text-decoration: none;
 }
-.tongquat:hover{
+.tongquat:hover {
   background-color: #8f8f96e7;
-  border-radius: 5px;
 }
 .tongquat img {
-  border-radius: 10px; 
+  border-radius: 10px;
   overflow: hidden; /* Đảm bảo ảnh được bo góc */
 }
 .noidung {
+  padding: 30px;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.left{
+.left {
   flex: 1;
   margin-right: 10px;
 }
-.left img{
+.left img {
   width: 100%;
   height: auto;
 }
-.right{
+.right {
   flex: 2;
+  margin-left: 50px;
 }
