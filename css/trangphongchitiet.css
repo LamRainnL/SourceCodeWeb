@@ -1,10 +1,23 @@
+<<<<<<< HEAD
 body {
   font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+=======
+* {
+  box-sizing: border-box;
+  outline: 0;
+  font-family: "Quicksand", sans-serif;
+  margin: 0;
 }
- /* Thêm CSS để định dạng layout */
- .main {
+
+body {
+  margin: 0;
+  padding: 0;
+>>>>>>> 5ea76d8e9990a6e915efba2cb3e94c10696a1e62
+}
+/* Thêm CSS để định dạng layout */
+.main {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -16,7 +29,6 @@ body {
   width: 68%;
   padding-left: 10px;
 }
-
 .right-section {
   width: 28%;
 }
@@ -24,6 +36,15 @@ body {
   width: 100%;
   height: auto;
   border-radius: 10px;
+  width: 700px;
+  height: 450px;
+}
+
+.picture h1 {
+  margin-top: 20px;
+  font-size: 24px;
+  line-height: 32px;
+  color: #e13427;
 }
 .picture,
 .room-info,
@@ -42,13 +63,17 @@ body {
   font-size: 1.5em; /* Kích thước của tiêu đề */
 }
 
-.room-info table, .room-info ul {
+.room-info table,
+.room-info ul {
   list-style: none; /* Ẩn dấu chấm ở đầu mỗi dòng */
   padding: 0; /* Loại bỏ padding mặc định của table và ul */
 }
 
-.room-info table td, .room-info ul li {
+.room-info table td,
+.room-info ul li {
   padding: 5px 0; /* Khoảng cách giữa các dòng */
+  font-size: 15px;
+  line-height: 20px;
 }
 .thongtinlienhe {
   padding: 20px; /* Khoảng cách nội dung trong right-section */
@@ -58,52 +83,73 @@ body {
   margin: 10px 0; /* Khoảng cách giữa đường kẻ và nội dung xung quanh */
 }
 
-.thongtinlienhe .hoten, .thongtinlienhe .sdt {
+.thongtinlienhe .hoten,
+.thongtinlienhe .sdt {
   margin-bottom: 10px; /* Khoảng cách giữa hoten và sdt */
 }
 
-.thongtinlienhe, .danhsach{
+.thongtinlienhe,
+.danhsach {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   height: fit-content;
-  max-height: 100%; 
+  max-height: 100%;
 }
-.thongtinlienhe a, .danhsach a{
+.thongtinlienhe a,
+.danhsach a {
   color: black;
   font-weight: bold;
   text-decoration: none;
 }
-.thongtinlienhe, .danhsach {
+.thongtinlienhe,
+.danhsach {
   display: flex;
   flex-direction: column;
-  background-color: #f4f4f4;
-  padding: 20px; 
+  background-color: #ecb207;
+  padding: 20px;
   border: 1px solid #e0e0e0; /* Viền xung quanh phần thông tin liên hệ */
   border-radius: 10px; /* Bo góc của phần thông tin liên hệ */
-  justify-content: center; 
+  justify-content: center;
 }
-.danhsach{
+.danhsach {
   margin-top: 30px;
 }
 .thongtinlienhe div {
   margin-bottom: 10px;
 }
 
-.thongtinlienhe p, .thongtinlienhe a {
+.thongtinlienhe p,
+.thongtinlienhe a {
   color: black;
-
+  line-height: 2;
+  font-size: 17px;
 }
-.thongtinlienhe a:hover, .danhsach a:hover {
-  color:#ecb207;
+.thongtinlienhe .hoten {
+  font-weight: 600;
+  margin-left: 65px;
+}
+
+.thongtinlienhe .sdt {
+  font-weight: 700;
+  font-size: 1.5rem;
+  width: 60%;
+  background: #16c784;
+  border-color: #16c784;
+  margin-left: 50px;
+}
+
+.thongtinlienhe a:hover,
+.danhsach a:hover {
+  color: white;
 }
 /* Biểu tượng điện thoại */
 .fa-phone {
   margin-right: 5px;
 }
-.hoten{
+.hoten {
   display: flex;
 }
-.sdt{
+.sdt {
   border-radius: 5px;
 }

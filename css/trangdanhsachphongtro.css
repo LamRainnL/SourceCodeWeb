@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+* {
+  box-sizing: border-box;
+  outline: 0;
+  font-family: "Quicksand", sans-serif;
+  margin: 0;
+}
+
+>>>>>>> 5ea76d8e9990a6e915efba2cb3e94c10696a1e62
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -11,6 +21,8 @@ body {
   border: 1px none #b2b0b0;
   padding: 10px;
   margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
 .thanhphan {
   width: 100%;
@@ -21,15 +33,34 @@ body {
   padding: 0;
   gap: 20px
 }
+<<<<<<< HEAD
+=======
+.tongquat {
+  border: solid #ecb207;
+  border-radius: 10px;
+  margin: 10px;
+}
+>>>>>>> 5ea76d8e9990a6e915efba2cb3e94c10696a1e62
 .tongquat a {
   color: black;
   text-decoration: none;
 }
+<<<<<<< HEAD
 .tongquat img{
   border-top: 10px;
+=======
+.tongquat:hover {
+  background-color: #8f8f96e7;
+}
+.tongquat img {
+  border-radius: 10px;
+  overflow: hidden; /* Đảm bảo ảnh được bo góc */
+>>>>>>> 5ea76d8e9990a6e915efba2cb3e94c10696a1e62
 }
 .noidung {
+  padding: 30px;
   display: flex;
+<<<<<<< HEAD
   flex-direction: column;
   border-radius: 10px;
   overflow: hidden; /* Để ẩn bớt các phần nằm ngoài vùng border-radius */
@@ -61,3 +92,20 @@ body {
   white-space:nowrap;
 }
 
+=======
+  align-items: center;
+  justify-content: center;
+}
+.left {
+  flex: 1;
+  margin-right: 10px;
+}
+.left img {
+  width: 100%;
+  height: auto;
+}
+.right {
+  flex: 2;
+  margin-left: 50px;
+}
+>>>>>>> 5ea76d8e9990a6e915efba2cb3e94c10696a1e62
