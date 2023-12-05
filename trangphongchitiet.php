@@ -91,7 +91,7 @@
 
         if (mysqli_num_rows($result_cungphuong) > 0) {
             echo "<div class='danhsach'>
-                <p>Danh sách phòng trọ cùng phường:</p><br><hr><br>";
+                <p>Danh sách phòng trọ cùng phường</p><br><hr>";
 
             while ($row_cungphuong = mysqli_fetch_assoc($result_cungphuong)) {
                 echo "<div class='phongcungphuong'>

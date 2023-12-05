@@ -1,19 +1,7 @@
-<<<<<<< HEAD
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-=======
-* {
-  box-sizing: border-box;
-  outline: 0;
-  font-family: "Quicksand", sans-serif;
-}
-
-body {
-  margin: 0;
-  padding: 0;
->>>>>>> 5ea76d8e9990a6e915efba2cb3e94c10696a1e62
 }
 
 a {
@@ -414,13 +402,8 @@ footer {
 }
 
 .tongquat:hover {
-<<<<<<< HEAD
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
-=======
-  background-color: #c9c9d8e7;
-  border-radius: 5px;
->>>>>>> 5ea76d8e9990a6e915efba2cb3e94c10696a1e62
 }
 
 .tongquat a {
@@ -450,17 +433,10 @@ footer {
 }
 
 .left img {
-<<<<<<< HEAD
     width: 300px;
     height: 180px;
     border-radius: 10px;
     overflow: hidden;
-=======
-  width: 300px;
-  height: 200px;
-  border-radius: 10px;
-  overflow: hidden;
->>>>>>> 5ea76d8e9990a6e915efba2cb3e94c10696a1e62
 }
 
 .right {
@@ -468,7 +444,7 @@ footer {
   margin-left: 30px;
 }
 .right h2 {
-  color: #e13427;
+  color: black;
 }
 .right p,h2{
     margin: 12px;

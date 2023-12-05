@@ -1,20 +1,7 @@
-<<<<<<< HEAD
 body {
   font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-=======
-* {
-  box-sizing: border-box;
-  outline: 0;
-  font-family: "Quicksand", sans-serif;
-  margin: 0;
-}
-
-body {
-  margin: 0;
-  padding: 0;
->>>>>>> 5ea76d8e9990a6e915efba2cb3e94c10696a1e62
 }
 /* Thêm CSS để định dạng layout */
 .main {
@@ -44,7 +31,6 @@ body {
   margin-top: 20px;
   font-size: 24px;
   line-height: 32px;
-  color: #e13427;
 }
 .picture,
 .room-info,
@@ -104,12 +90,9 @@ body {
 }
 .thongtinlienhe,
 .danhsach {
-  display: flex;
-  flex-direction: column;
-  background-color: #ecb207;
+  background-color: #fcfbfb;
   padding: 20px;
   border: 1px solid #e0e0e0; /* Viền xung quanh phần thông tin liên hệ */
-  border-radius: 10px; /* Bo góc của phần thông tin liên hệ */
   justify-content: center;
 }
 .danhsach {
@@ -127,21 +110,17 @@ body {
 }
 .thongtinlienhe .hoten {
   font-weight: 600;
-  margin-left: 65px;
 }
 
 .thongtinlienhe .sdt {
   font-weight: 700;
   font-size: 1.5rem;
   width: 60%;
-  background: #16c784;
-  border-color: #16c784;
-  margin-left: 50px;
 }
 
 .thongtinlienhe a:hover,
 .danhsach a:hover {
-  color: white;
+  color:#ecb207;
 }
 /* Biểu tượng điện thoại */
 .fa-phone {

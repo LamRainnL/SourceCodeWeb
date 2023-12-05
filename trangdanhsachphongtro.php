@@ -13,6 +13,9 @@
     <?php
     require 'layout/header.php';
     ?>
+    <div class="breadcrumb" style="margin-top: 10px; margin-bottom: 20px;margin-left: 10px;">
+        <a href="/trangchu.php" style="text-decoration: none;">Trang chủ</a> &gt; Danh sách Sleep box
+    </div>
     <!-- ---------danh sách phòng trọ----------->
     <div class="main">
         <div class="thanhphan">
