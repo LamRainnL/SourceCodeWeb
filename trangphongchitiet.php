@@ -20,7 +20,8 @@
     $id = $_GET['id'];
     $sql = "SELECT * FROM phongtro WHERE Id_PhongTro=$id";
     $result = mysqli_query($kn, $sql);
-    $sql_user = "SELECT * FROM users WHERE Id_User='" . $_SESSION['id'] . "'";
+    $sql_user ="SELECT users.* FROM users 
+    INNER JOIN phongtro ON  users.Id_User = phongtro.Id_User";
     $result_user = mysqli_query($kn, $sql_user);
 
     echo "<div class='main'>";
