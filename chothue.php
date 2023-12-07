@@ -51,7 +51,12 @@
                     </div>
                     <div class="form-group">
                         <label for="phuong">Phường:</label>
-                        <input type="text" name="phuong" id="phuong" required><br>
+                        <div class="custom-select" style="width: 200px; margin-top: 10px;">
+                            <select name="phuong" id="phuong" required>
+                                <option value="" disabled selected hidden>Chọn phường</option>
+                                <!-- Các option sẽ được thêm bằng mã JavaScript -->
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="diachicuthe">Địa Chỉ Cụ Thể:</label>
@@ -103,6 +108,27 @@
             </div>
         </div>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var wards = [
+            "Ngô Mây", "Nguyễn Văn Cừ", "Quang Trung", "Đống Đa",
+            "Bùi Thị Xuân", "Ghềnh Ráng", "Hải Cảng", "Lê Hồng Phong",
+            "Lê Lợi", "Lý Thường Kiệt", "Nhơn Bình", "Nhơn Phú",
+            "Thị Nại", "Trần Hưng Đạo", "Trần Phú", "Trần Quang Diệu"
+        ];
+
+        var selectPhuong = document.getElementById("phuong");
+
+        // Thêm các option vào dropdown từ mảng "wards"
+        wards.forEach(function (ward) {
+            var option = document.createElement("option");
+            option.value = ward;
+            option.textContent = ward;
+            selectPhuong.appendChild(option);
+        });
+    });
+</script>
+
 </body>
 
 </html>
