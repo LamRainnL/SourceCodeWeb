@@ -27,6 +27,8 @@ if (isset($_POST['submit'])) {
 					window.history.back();
 				  </script>";
 		} else {
+			$ten = $row['TenDangNhap'];
+			$_SESSION['ten'] = $ten;
 			echo"<script> 
 							alert('Đăng nhập thành công'); 
 							window.location.href = '/Admin/duyetbai.php';

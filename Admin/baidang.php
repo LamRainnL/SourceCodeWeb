@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+// Kiểm tra xem người dùng đã đăng nhập với tài khoản admin chưa
+if (!isset($_SESSION['ten'])) {
+    echo "<script> 
+				alert('Bạn chưa có đủ quyền truy cập!'); 
+                window.location.href = '/trangchu.php';
+          </script>";
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +24,7 @@
 
 <body>
     <br>
+    <div style="float: left; margin-left: 20px;"><a href="/Admin/processAdmin/logout.php" id="logout" style="color: black;">  <i class="fa fa-sign-out" aria-hidden="true"></i></a></div>
     <div style="float: right; margin-right: 20px;">
         <a href="/Admin/duyetbai.php">Bài đăng chờ duyệt</a>
     </div>
@@ -76,7 +89,7 @@
     </div>
 </div>";
         }
-    }else {
+    } else {
         echo "Lỗi truy vấn: " . mysqli_error($kn);
     }
 
