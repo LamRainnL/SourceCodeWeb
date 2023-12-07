@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/trangphongchitiet.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết phòng</title>
 </head>
@@ -20,8 +18,9 @@
     $id = $_GET['id'];
     $sql = "SELECT * FROM phongtro WHERE Id_PhongTro=$id";
     $result = mysqli_query($kn, $sql);
-    $sql_user ="SELECT users.* FROM users 
-    INNER JOIN phongtro ON  users.Id_User = phongtro.Id_User";
+    $sql_user = "SELECT users.* FROM users
+    INNER JOIN phongtro ON users.Id_User = phongtro.Id_User
+    WHERE phongtro.Id_PhongTro = $id";   
     $result_user = mysqli_query($kn, $sql_user);
 
     echo "<div class='main'>";

@@ -16,58 +16,75 @@
     <!-- PAGE CONTENT : START -->
     <div class="page-homeqn-content">
         <div class="filter">
-            <div class="filter-list">
-                <div class="custom-select" style="width: 174px">
-                    <select class="select">
-                        <option value="0" style="border-radius: 20px">
-                            Chọn tên phường
-                        </option>
-                        <option value="1">Ngô Mây</option>
-                        <option value="2">Nguyễn Văn Cừ</option>
-                        <option value="3">Quang Trung</option>
-                        <option value="4">Đống Đa</option>
-                        <option value="5">Bùi Thị Xuân</option>
-                        <option value="6">Ghềnh Ráng</option>
-                        <option value="7">Hải Cảng</option>
-                        <option value="8">Lê Hồng Phong</option>
-                        <option value="9">Lê Lợi</option>
-                        <option value="10">Lý Thường Kiệt</option>
-                        <option value="11">Nhơn Bình</option>
-                        <option value="12">Nhơn Phú</option>
-                        <option value="13">Thị Nại</option>
-                        <option value="14">Trần Hưng Đạo</option>
-                        <option value="15">Trần Phú</option>
-                        <option value="16">Trần Quang Diệu</option>
-                    </select>
-                </div>
+            <form id="filterForm" action="trangloc.php" method="post" style="align-items:center; margin-top: 6px;" onsubmit="return filterData();">
+                <div class="filter-list">
+                    <div class="custom-select" style="width: 174px">
+                        <select id="phuong" name="phuong" class="select">
+                            <option value="0" style="border-radius: 20px">
+                                Chọn tên phường
+                            </option>
+                            <option value="Ngô Mây">Ngô Mây</option>
+                            <option value="Nguyễn Văn Cừ">Nguyễn Văn Cừ</option>
+                            <option value="Quang Trung">Quang Trung</option>
+                            <option value="Đống Đa">Đống Đa</option>
+                            <option value="Bùi Thị Xuân">Bùi Thị Xuân</option>
+                            <option value="Ghềnh Ráng">Ghềnh Ráng</option>
+                            <option value="Hải Cảng">Hải Cảng</option>
+                            <option value="Lê Hồng Phong">Lê Hồng Phong</option>
+                            <option value="Lê Lợi">Lê Lợi</option>
+                            <option value="Lý Thường Kiệt">Lý Thường Kiệt</option>
+                            <option value="Nhơn Bình">Nhơn Bình</option>
+                            <option value="Nhơn Phú">Nhơn Phú</option>
+                            <option value="Thị Nại">Thị Nại</option>
+                            <option value="Trần Hưng Đạo">Trần Hưng Đạo</option>
+                            <option value="Trần Phú">Trần Phú</option>
+                            <option value="Trần Quang Diệu">Trần Quang Diệu</option>
+                        </select>
+                    </div>
 
-                <div class="custom-select" style="width: 200px; margin-left: 10px">
-                    <select class="select">
-                        <option value="0">Chọn khoảng giá</option>
-                        <option value="1">Dưới 1 triệu</option>
-                        <option value="2">1 - 3 triệu</option>
-                        <option value="3">3 - 7 triệu</option>
-                        <option value="4">7 - 15 triệu</option>
-                        <option value="5">15 - 25 triệu</option>
-                        <option value="6">25 - 50 triệu</option>
-                        <option value="7">50 - 70 triệu</option>
-                        <option value="8">70 - 100 triệu</option>
-                    </select>
-                </div>
+                    <div class="custom-select" style="width: 200px; margin-left: 10px">
+                        <select id="gia" name="gia" class="select">
+                            <option value="0">Chọn khoảng giá</option>
+                            <option value="1">Dưới 1 triệu</option>
+                            <option value="2">1 - 3 triệu</option>
+                            <option value="3">3 - 7 triệu</option>
+                            <option value="4">7 - 15 triệu</option>
+                        </select>
+                    </div>
 
-                <div class="custom-select" style="width: 200px; margin-left: 10px">
-                    <select class="select">
-                        <option value="0">Chọn diện tích</option>
-                        <option value="1">15m2</option>
-                        <option value="2">15 - 20m2</option>
-                        <option value="3">20 - 30 m2</option>
-                        <option value="4">30 - 50m2</option>
-                        <option value="5">50 - 70 m2</option>
-                        <option value="6">70 - 100m2</option>
-                    </select>
+                    <div class="custom-select" style="width: 200px; margin-left: 10px">
+                        <select id="dientich" name="dientich" class="select">
+                            <option value="0">Chọn diện tích</option>
+                            <option value="1">50m²</option>
+                            <option value="2">50 - 100m²</option>
+                            <option value="3">100 - 200m²</option>
+                            <option value="4">200 - 300m²</option>
+                        </select>
+                    </div>
+                    <button type="button" onclick="filterData()">Lọc <i class="fa fa-search"></i></button>
+                    <!-- Script để kiểm tra trước khi gửi form -->
+                    <script>
+                        function filterData() {
+                            var phuong = document.getElementById("phuong").value;
+                            var gia = document.getElementById("gia").value;
+                            var dientich = document.getElementById("dientich").value;
+                            console.log("phuong: " + phuong);
+                            console.log("gia: " + gia);
+                            console.log("dientich: " + dientich);
+
+                            // Kiểm tra nếu không có thông tin nào được chọn
+                            if (phuong == 0 && gia == 0 && dientich == 0) {
+                                alert("Vui lòng chọn ít nhất một thông tin để lọc.");
+                                return false;
+                            } else {
+                                // Nếu có thông tin, thực hiện submit form
+                                document.getElementById("filterForm").submit();
+                            }
+                        }
+                    </script>
                 </div>
-                <button>Lọc <i class="fa fa-search"></i></button>
-            </div>
+            </form>
+
         </div>
         <!-- script cho bộ lọc -->
         <script>

@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-group">
                         <label for="dientich">Diện Tích(m²):</label>
-                        <input type="text" name="dientich" id="dientich" required><br>
+                        <input type="number" name="dientich" id="dientich" required><br>
                     </div>
                     <div class="form-group">
                         <label for="sophong">Số Phòng:</label>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group">
                         <label for="gia">Giá(VND):</label>
-                        <input type="text" name="gia" id="gia" required><br>
+                        <input type="number" name="gia" id="gia" required><br>
                     </div>
                     <div class="form-group">
                         <label for="mota">Mô Tả:</label>

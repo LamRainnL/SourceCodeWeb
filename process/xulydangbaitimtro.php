@@ -4,11 +4,12 @@ session_start();
 if (isset($_POST['submit'])) {
     $tieude = $_POST['tieude'];
     $mota = $_POST['mota'];
+    $inf=$_POST['infor'];
     $trangthai = "pending";
     $thoigiandang = date('Y-m-d H:i:s'); // Lấy thời gian hiện tại
     $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
     mysqli_set_charset($kn, "utf8mb4");
-    $caulenh = "INSERT INTO timtro (TenBaiViet, NoiDung, Id_User, status,ThoiGianDang) VALUES ('$tieude', '$mota','" . $_SESSION['id'] . "', '$trangthai','$thoigiandang')";
+    $caulenh = "INSERT INTO timtro (TenBaiViet, NoiDung, Id_User, status,ThoiGianDang,thongtinlienhe) VALUES ('$tieude', '$mota','" . $_SESSION['id'] . "', '$trangthai','$thoigiandang','$inf')";
 
     $result = mysqli_query($kn, $caulenh);
 

@@ -27,6 +27,10 @@
                         <label for="mota">Nội dung</label>
                         <textarea name="mota" id="mota"></textarea><br>
                     </div>
+                    <div class="form-group">
+                        <label for="mota">Thông tin liên hệ</label>
+                        <input type="text" name="infor" id="infor" required><br>
+                    </div>
                     <input type="submit" name="submit" value="Đăng Bài">
                 </form>
 
