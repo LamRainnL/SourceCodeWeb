@@ -49,6 +49,7 @@
                             <option value="2">1 - 3 triệu</option>
                             <option value="3">3 - 7 triệu</option>
                             <option value="4">7 - 15 triệu</option>
+                            <option value="5">Trên 15 triệu</option>
                         </select>
                     </div>
 
@@ -59,6 +60,7 @@
                             <option value="2">50 - 100m²</option>
                             <option value="3">100 - 200m²</option>
                             <option value="4">200 - 300m²</option>
+                            <option value="5">Trên 300m²</option>
                         </select>
                     </div>
                     <button type="button" onclick="filterData()">Lọc <i class="fa fa-search"></i></button>
