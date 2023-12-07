@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th12 02, 2023 lúc 03:39 AM
+-- Thời gian đã tạo: Th12 07, 2023 lúc 02:20 PM
 -- Phiên bản máy phục vụ: 10.4.10-MariaDB
 -- Phiên bản PHP: 7.3.12
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `phongtro` (
   `HinhAnh` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `DiaChiCuThe` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `Phuong` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
-  `Gia` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
+  `Gia` int(11) DEFAULT NULL,
   `DienTich` int(11) DEFAULT NULL,
   `SoPhong` int(11) DEFAULT NULL,
   `MoTa` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
@@ -94,16 +94,18 @@ CREATE TABLE IF NOT EXISTS `phongtro` (
   PRIMARY KEY (`Id_PhongTro`),
   KEY `Id_DanhMuc` (`Id_DanhMuc`),
   KEY `Id_User` (`Id_User`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `phongtro`
 --
 
 INSERT INTO `phongtro` (`Id_PhongTro`, `TieuDe`, `LoaiHinhChoThue`, `HinhAnh`, `DiaChiCuThe`, `Phuong`, `Gia`, `DienTich`, `SoPhong`, `MoTa`, `Id_DanhMuc`, `Id_User`, `status`, `ThoiGianDang`) VALUES
-(23, 'Cho thuê trọ tại Nguyễn Thị Minh Khai', 'Phòng trọ', 'upimg/1701405418_anhphongtro.jpg', '31 Nguyễn Thị Minh Khai', 'Nguyễn Văn Cừ', '200000.00', 100, 1, 'Gần trường', 3, 9, 'approved', '2023-12-01 05:36:58'),
-(24, 'Cho thuê nhà tại Quang Trung', 'Nhà nguyên căn', 'upimg/1701406497_anhphongtro.jpg', '231/73 Tây sơn', 'Quang Trung', '2 triệu', 100, 1, 'Nhà 2 phòng ngủ, 1 nhà bếp', 4, 9, 'approved', '2023-12-01 05:54:57'),
-(25, 'Cho thuê trọ tại Nguyễn Thị Minh Khai', 'Nhà nguyên căn', 'upimg/1701411989_anhphongtro.jpg', '31 Nguyễn Thị Minh Khai, Nguyễn Văn Cừ, Quy Nhơn, Bình Định', 'Nguyễn Văn Cừ', '2 triệu', 100, 1, 'gần', 4, 9, 'approved', '2023-12-01 07:26:29');
+(1, 'Cho thuê trọ tại Nguyễn Thị Minh Khai', 'Phòng trọ', 'upimg/1701929692_anhphongtro.jpg', '31 Nguyễn Thị Minh Khai', 'Nguyễn Văn Cừ', 2000000, 100, 2, 'trọ gần trường, đầy đủ tiện nghi', 3, 9, 'approved', '2023-12-07 13:14:52'),
+(2, 'Nhà nguyên căn hẽm 12 Ngô Mây', 'Nhà nguyên căn', 'upimg/1701932845_anhphongtro.jpg', '23/12 Ngô Mây', 'Ngô Mây', 4000000, 200, 3, 'nhà có 2 phòng ngủ, 1 phòng bếp, đầy đủ tiện nghi, rộng rãi thoải mái', 4, 9, 'approved', '2023-12-07 14:07:25'),
+(3, 'Sleep Box tại Quy Nhơn', 'Sleep box', 'upimg/1701933237_anhphongtro.jpg', '45 Nguyễn Thị Định', 'Nguyễn Văn Cừ', 1000000, 200, 2, 'đầy đủ tiện nghi ( máy lạnh, máy giặt), mặt đường tiện lợi', 6, 10, 'approved', '2023-12-07 14:13:57'),
+(4, 'Cho thuê phòng tại Nguyễn Lữ', 'Phòng trọ', 'upimg/1701948289_anhphongtro.jpg', '231 Ngô Mây', 'Ngô Mây', 1500000, 100, 1, 'phòng trọ gần chợ khu 6', 3, 9, 'approved', '2023-12-07 18:24:49'),
+(5, 'Cho thuê trọ Chương Dương', 'Phòng trọ', 'upimg/1701948712_download.jpg', '45 Chương Dương', 'Nguyễn Văn Cừ', 2000000, 200, 1, 'trọ mới sạch sẽ', 3, 9, 'approved', '2023-12-07 18:31:52');
 
 -- --------------------------------------------------------
 
@@ -119,16 +121,17 @@ CREATE TABLE IF NOT EXISTS `timtro` (
   `Id_User` int(11) DEFAULT NULL,
   `status` enum('pending','approved','rejected') COLLATE utf8_vietnamese_ci NOT NULL,
   `ThoiGianDang` datetime DEFAULT NULL,
+  `thongtinlienhe` varchar(255) COLLATE utf8_vietnamese_ci DEFAULT NULL,
   PRIMARY KEY (`Id_TimTro`),
   KEY `Id_User` (`Id_User`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `timtro`
 --
 
-INSERT INTO `timtro` (`Id_TimTro`, `TenBaiViet`, `NoiDung`, `Id_User`, `status`, `ThoiGianDang`) VALUES
-(9, 'Tìm trọ Nguyễn Thái Học', 'Trọ cho 2 người ở', 9, 'approved', '2023-12-01 05:40:25');
+INSERT INTO `timtro` (`Id_TimTro`, `TenBaiViet`, `NoiDung`, `Id_User`, `status`, `ThoiGianDang`, `thongtinlienhe`) VALUES
+(15, 'Tìm trọ Nguyễn Thái Học', '2 người ở', 9, 'approved', '2023-12-07 04:50:52', '0352282425');
 
 -- --------------------------------------------------------
 
@@ -145,14 +148,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Sdt` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
   `MatKhau` text COLLATE utf8_vietnamese_ci DEFAULT NULL,
   PRIMARY KEY (`Id_User`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`Id_User`, `Ho`, `Ten`, `Email`, `Sdt`, `MatKhau`) VALUES
-(9, 'Nguyễn Bá', 'Lâm', 'nguyenbalam208@gmail.com', '0352282425', '1');
+(9, 'Nguyễn Bá', 'Lâm', 'nguyenbalam208@gmail.com', '0352282425', '1'),
+(10, 'bas', 'laam', 'balam@gmail.com', '0352282424', '1'),
+(11, 'Nguyễn Thị Thanh', 'Hương', 'h@gmail.com', '0987654321', '1');
 
 --
 -- Chỉ mục cho các bảng đã đổ
