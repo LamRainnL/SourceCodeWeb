@@ -213,8 +213,19 @@
                 <?php
                 $kn = mysqli_connect("localhost", "root", "", "webtimtro") or die("Không kết nối được");
                 mysqli_set_charset($kn, "utf8mb4");
-                $caulenh1 = "SELECT * from phongtro where status='approved' ORDER BY ThoiGianDang DESC";
+                // Số bài viết trên mỗi trang
+                $postsPerPage = 4;
+                // Xác định trang hiện tại từ biến $_GET
+                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                // Tính offset để xác định bắt đầu của mỗi trang
+                $offset = ($page - 1) * $postsPerPage;
+                //Câu lệnh truy vấn
+                $caulenh = "SELECT * from phongtro where status='approved' ORDER BY ThoiGianDang DESC";
+                $result = mysqli_query($kn, $caulenh);
+                $caulenh1 = "SELECT * from phongtro where status='approved' ORDER BY ThoiGianDang DESC LIMIT $postsPerPage OFFSET $offset";
                 $result1 = mysqli_query($kn, $caulenh1);
+                //Tính số lượng bài viết có trên trang
+                $sumPostsOnPage = mysqli_num_rows($result);
                 $hasresult = false;
                 echo "<div class='container'>
                             <div class='column'>
@@ -250,8 +261,22 @@
                     echo "Lỗi truy vấn!" . mysqli_error($kn);
                 }
 
+                echo '</div>';
+                // Tính tổng số trang dựa trên số lượng bài viết và số bài viết trên mỗi trang
+                $sumPostsOnPage = ceil($sumPostsOnPage / $postsPerPage);
+                // Hiển thị liên kết phân trang
+                echo '<div class="tongphantrang">
+                    <div class="phantrang">';
+                for ($i = 1; $i <= $sumPostsOnPage; $i++) {
+                    echo '<a href="?page=' . $i . '"';
+                    if ($i == $page) {
+                        echo ' class="active"';
+                    }
+                    echo '>' . $i . '</a>';
+                }
                 echo '</div>
-                    </div>';
+                    </div>
+                </div>';
                 mysqli_close($kn);
                 ?>
             </div>
