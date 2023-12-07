@@ -45,6 +45,9 @@
                         case 4:
                             $caulenh1 .= " AND Gia BETWEEN 7000000 AND 15000000";
                             break;
+                        case 5:
+                            $caulenh1 .= " AND Gia > 15000000";
+                            break;
                     }
                 }
 
@@ -63,6 +66,9 @@
                             break;
                         case 4:
                             $caulenh1 .= " AND DienTich BETWEEN 200 AND 300";
+                            break;
+                        case 5:
+                            $caulenh1 .= " AND DienTich > 300";
                             break;
                     }
                 }
