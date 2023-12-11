@@ -2,7 +2,7 @@
 session_start();
 
 // Kiểm tra xem người dùng đã đăng nhập với tài khoản admin chưa
-if (!isset($_SESSION['ten'])) {
+if (!isset($_SESSION['admin'])) {
     echo "<script> 
 				alert('Bạn chưa có đủ quyền truy cập!'); 
                 window.location.href = '/trangchu.php';

@@ -12,6 +12,13 @@
 <body>
     <?php
     require 'layout/header.php';
+    if (!isset($_SESSION['ten'])) {
+        echo "<script> 
+                    alert('Bạn cần đăng nhập!'); 
+                    window.location.href = '/Login.php';
+              </script>";
+        exit();
+    }
     ?>
     <div id="main">
         <div class="tongquat">

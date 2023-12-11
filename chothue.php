@@ -6,19 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/chothue.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .error-message {
+            color: red;
+            font-size: 12px;
+        }
+
+        .error-input {
+            border: 1px solid red;
+        }
+    </style>
     <title>Đăng bài</title>
 </head>
 
 <body>
     <?php
     require 'layout/header.php';
+    if (!isset($_SESSION['ten'])) {
+        echo "<script> 
+                    alert('Bạn cần đăng nhập!'); 
+                    window.location.href = '/Login.php';
+              </script>";
+        exit();
+    }
     ?>
     <div id="main">
         <div class="tongquat">
             <div class="top">Đăng bài cho thuê trọ</div>
             <hr>
             <div class="mid">
-                <form action="/process/xulydangbaichothue.php" method="post" enctype="multipart/form-data">
+                <form action="/process/xulydangbaichothue.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
                     <div class="form-group">
                         <label for="tieude">Tiêu Đề:</label>
                         <input type="text" name="tieude" id="tieude" required><br>
@@ -64,15 +81,18 @@
                     </div>
                     <div class="form-group">
                         <label for="dientich">Diện Tích(m²):</label>
-                        <input type="number" name="dientich" id="dientich" required><br>
+                        <input type="number" name="dientich" id="dientich" oninput="checkNumericInput(this, 'dientich')" required>
+                        <span id="dientich-error" class="error-message"></span><br>
                     </div>
                     <div class="form-group">
                         <label for="sophong">Số Phòng:</label>
-                        <input type="number" name="sophong" id="sophong" required><br>
+                        <input type="number" name="sophong" id="sophong" oninput="checkNumericInput(this, 'sophong')" required>
+                        <span id="sophong-error" class="error-message"></span><br>
                     </div>
                     <div class="form-group">
                         <label for="gia">Giá(VND):</label>
-                        <input type="number" name="gia" id="gia" required><br>
+                        <input type="number" name="gia" id="gia" oninput="checkNumericInput(this, 'gia')" required>
+                        <span id="gia-error" class="error-message"></span><br>
                     </div>
                     <div class="form-group">
                         <label for="mota">Mô Tả:</label>
@@ -104,31 +124,96 @@
                             }
                         }
                     });
+
+                    function checkNumericInput(inputField, fieldName) {
+                        var value = inputField.value;
+                        var errorSpanId = fieldName + "-error";
+
+                        // Kiểm tra giá trị âm
+                        if (value < 0) {
+                            document.getElementById(errorSpanId).textContent = 'Không nhập giá trị âm!';
+                            inputField.classList.add("error-input");
+                        } else {
+                            document.getElementById(errorSpanId).textContent = '';
+                            inputField.classList.remove("error-input");
+                        }
+
+                        // Kiểm tra giá trị nhỏ hơn 50 cho trường dientich
+                        if (fieldName === 'dientich' && value < 50) {
+                            document.getElementById(errorSpanId).textContent = 'Diện tích phải lớn hơn hoặc bằng 50!';
+                            inputField.classList.add("error-input");
+                        }
+
+                        // Kiểm tra giá trị không chứa các kí tự -+*/ cho tất cả các trường
+                        var regex = /^[^-\+\*\/]+$/;
+                        if (!regex.test(value)) {
+                            document.getElementById(errorSpanId).textContent = 'Không chứa kí tự -+*/!';
+                            inputField.classList.add("error-input");
+                        }
+                    }
+
+                    function validateForm() {
+                        // Kiểm tra các điều kiện khác nếu cần
+                        var dientichValue = document.getElementById("dientich").value;
+                        var sophongValue = document.getElementById("sophong").value;
+                        var giaValue = document.getElementById("gia").value;
+
+                        // Kiểm tra giá trị diện tích
+                        if (dientichValue < 50) {
+                            document.getElementById("dientich-error").textContent = 'Diện tích phải lớn hơn hoặc bằng 50!';
+                            document.getElementById("dientich").classList.add("error-input");
+                            return false;
+                        } else {
+                            document.getElementById("dientich-error").textContent = '';
+                            document.getElementById("dientich").classList.remove("error-input");
+                        }
+
+                        // Kiểm tra giá trị số phòng
+                        if (sophongValue < 0) {
+                            document.getElementById("sophong-error").textContent = 'Không nhập giá trị âm!';
+                            document.getElementById("sophong").classList.add("error-input");
+                            return false;
+                        } else {
+                            document.getElementById("sophong-error").textContent = '';
+                            document.getElementById("sophong").classList.remove("error-input");
+                        }
+
+                        // Kiểm tra giá trị giá
+                        if (giaValue < 0) {
+                            document.getElementById("gia-error").textContent = 'Không nhập giá trị âm!';
+                            document.getElementById("gia").classList.add("error-input");
+                            return false;
+                        } else {
+                            document.getElementById("gia-error").textContent = '';
+                            document.getElementById("gia").classList.remove("error-input");
+                        }
+
+                        return true;
+                    }
                 </script>
             </div>
         </div>
     </div>
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var wards = [
-            "Ngô Mây", "Nguyễn Văn Cừ", "Quang Trung", "Đống Đa",
-            "Bùi Thị Xuân", "Ghềnh Ráng", "Hải Cảng", "Lê Hồng Phong",
-            "Lê Lợi", "Lý Thường Kiệt", "Nhơn Bình", "Nhơn Phú",
-            "Thị Nại", "Trần Hưng Đạo", "Trần Phú", "Trần Quang Diệu"
-        ];
+        document.addEventListener("DOMContentLoaded", function () {
+            var wards = [
+                "Ngô Mây", "Nguyễn Văn Cừ", "Quang Trung", "Đống Đa",
+                "Bùi Thị Xuân", "Ghềnh Ráng", "Hải Cảng", "Lê Hồng Phong",
+                "Lê Lợi", "Lý Thường Kiệt", "Nhơn Bình", "Nhơn Phú",
+                "Thị Nại", "Trần Hưng Đạo", "Trần Phú", "Trần Quang Diệu"
+            ];
 
-        var selectPhuong = document.getElementById("phuong");
+            var selectPhuong = document.getElementById("phuong");
 
-        // Thêm các option vào dropdown từ mảng "wards"
-        wards.forEach(function (ward) {
-            var option = document.createElement("option");
-            option.value = ward;
-            option.textContent = ward;
-            selectPhuong.appendChild(option);
+            // Thêm các option vào dropdown từ mảng "wards"
+            wards.forEach(function (ward) {
+                var option = document.createElement("option");
+                option.value = ward;
+                option.textContent = ward;
+                selectPhuong.appendChild(option);
+            });
         });
-    });
-</script>
-
+    </script>
 </body>
 
 </html>

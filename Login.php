@@ -56,7 +56,7 @@
                                 formSubmitted = true;
                                 document.getElementById('form-login').submit();
                             }, 3000);
-                        }
+                        } 
                     }
 
                     function handleMouseUp() {

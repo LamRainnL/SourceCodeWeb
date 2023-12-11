@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
 				  </script>";
 		} else {
 			$ten = $row['TenDangNhap'];
-			$_SESSION['ten'] = $ten;
+			$_SESSION['admin'] = $ten;
 			echo"<script> 
 							alert('Đăng nhập thành công'); 
 							window.location.href = '/Admin/duyetbai.php';
